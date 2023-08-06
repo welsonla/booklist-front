@@ -1,3 +1,47 @@
+$primary-color: #f6f6f1;
+$content-color: #111;
+$title-color:#3377aa;
+$border-style: 1px solid #eaeaea;
+$nav-text-color: #614e3c;
+
 body {
-  background-color: azure;
+  background-color: $primary-color;
+}
+
+.container{
+  width: 1150px;
+}
+
+.nav-text-color {
+  color: $nav-text-color;
+}
+
+.section-title{
+  font-size: 18px;
+  font-weight: 500;
+  color: #111;
+  line-height: 150%;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+  margin-bottom: 15px;;
+}
+
+.book-item-cover{
+  height: 170px;
+  width: 115px;
+}
+
+
+.book-category {
+  width: 120px;
+  height: 60px;
+}
+
+.note-title{
+  color: $title-color;
+}
+
+.note-item-cover {
+  height: 150px;
+  width: 101px;
 }
