@@ -16,6 +16,10 @@ body {
   color: $nav-text-color;
 }
 
+.border-color {
+  border:1px solid $border-style;
+}
+
 .section-title{
   font-size: 18px;
   font-weight: 500;
