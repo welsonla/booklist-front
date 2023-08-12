@@ -10,7 +10,7 @@ function request(method, route, obj, domain = '') {
       url,
       data: obj || {}
     }).then(function (response) {
-      console.log(`${response}`)
+      // console.log(`JSON.output2:${response}`)
       resolve(response.data, url)
     }).catch(function (error) {
       reject(error);
@@ -23,3 +23,5 @@ export const login = (params = {}) => request(`post`, '/api/login', params)
 
 // 注册
 export const register = (params = {}) => request(`post`, '/api/register', params)
+
+export const home = (params = {}) => request(`post`, '/api/home', params)

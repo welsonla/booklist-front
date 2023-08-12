@@ -1,7 +1,9 @@
 <template>
   <Layout>
     <div class="flex flex-col">
-      <div class="nav-text-color text-center text-2xl font-semibold">时光书单</div>
+      <div class="nav-text-color text-center text-2xl font-semibold">
+        <a href="/">时光书单</a>
+      </div>
       <div class="flex flex-col login-form p-4 m-auto my-6">
         <!-- 登录与注册切换 -->
         <div class="flex flex-row items-center content-center justify-center text-lg mb-4">
@@ -29,6 +31,7 @@
               <input type="password" name="password" placeholder="密码" class="h-10 border-color rounded-md border text-sm pl-2" v-model="loginPass"/>
           </div>
           <button type="submit" class="h-8 bg-green-600 rounded-md text-white mt-4" @click="login">登录</button>
+          <p> --- {{ clickCount }} +++</p>
           <!-- End 登录表单 -->
         </template>
         <template v-else>
@@ -44,6 +47,7 @@
               <input type="password" name="password-confirm" placeholder="确认密码" class="h-10 border-color rounded-md border text-sm pl-2" v-model="regPassConfirm"/>
           </div>
           <button type="submit" class="h-8 bg-green-600 rounded-md text-white mt-4" @click="register">注册</button>
+
           <!-- End 注册表单 -->
         </template>
         <!-- End 登录注册Form -->
@@ -55,10 +59,16 @@
 <script>
 import Layout from "@/pages/layout";
 import * as api from '@/api';
+import { mapActions } from 'vuex';
 
 export default {
   name: "login",
   components: {Layout},
+  computed:{
+    clickCount() {
+      return this.$store.state.user.counter
+    }
+  },
   methods:{
     updateTab(index){
       this.selectIndex = index
@@ -68,7 +78,7 @@ export default {
         username: this.loginName,
         password: this.loginPass
       }
-      api.login(params).then((res) => {
+      this.$store.dispatch('user/login', params).then((resp) => {
 
       }).catch((e) => {
 

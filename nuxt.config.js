@@ -17,8 +17,9 @@ export default {
     ]
   },
 
+  ssr:true,
   // Vuex
-  store:true,
+  // store: '~/store',
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
@@ -27,7 +28,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/fontawesome.js'
+    '~/plugins/fontawesome.js',
+    {src:'~/plugins/localStorage.js', ssr: false}
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

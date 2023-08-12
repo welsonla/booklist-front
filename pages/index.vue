@@ -19,7 +19,7 @@
 
 <!--    <Rank />-->
 
-    <HotList />
+    <HotList :books="hotbooks"/>
 
     <NoteList />
 
@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 import Header from "@/components/Header";
 import Booklist from "@/components/Booklist";
 import Category from '@/components/Category.vue';
@@ -41,7 +42,7 @@ import Footer from "@/components/Footer";
 import Rank from "@/components/Rank";
 import NoteList from "@/components/NoteList";
 import HotList from "@/components/HotList";
-import * as Tool from "@/tool";
+
 
 export default {
   name: 'IndexPage',
@@ -54,26 +55,23 @@ export default {
     HotList,
     Footer
   },
+  async asyncData({ app, params, store }) {
+    store.dispatch('home/home', {}).then((resp) => {
+    }).catch((e) => {
+    })
+  },
   created() {
-    console.log('created')
   },
   beforeMount() {
-    console.log('mouted')
     // this.user = Tool.user()
     // this.isLogin = Tool.isLogin()
   },
   mounted() {
-    console.log('mouted')
-    // this.user = Tool.user()
-    // this.isLogin = Tool.isLogin()
   },
   computed:{
-    // isLogin() {
-    //   return Tool.isLogin()
-    // },
-    // user() {
-    //   return Tool.user()
-    // }
+    ...mapGetters({
+      hotbooks:'home/hotbooks'
+    })
   },
   data(){
     return {
