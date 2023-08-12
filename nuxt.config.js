@@ -1,3 +1,4 @@
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -15,6 +16,9 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+
+  // Vuex
+  store:true,
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
@@ -41,5 +45,6 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    transpile: [({ isLegacy }) => isLegacy && 'axios']
   }
 }

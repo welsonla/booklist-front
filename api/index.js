@@ -3,7 +3,7 @@ import axios from 'axios';
 const host = "http://127.0.0.1:5000"
 
 function request(method, route, obj, domain = '') {
-  let url =`${host}/${route}`
+  let url =`${host}${route}`
   return new Promise(function (resolve, reject) {
     axios({
       method: method.toLocaleString(),

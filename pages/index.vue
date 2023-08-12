@@ -1,6 +1,6 @@
 <template>
   <div class="container flex flex-col flex-1 h-full m-auto">
-    <Header />
+    <Header/>
     <!-- 搜索框 -->
     <div class="flex flex-col items-center content-center justify-center p-4">
       <div class="text-3xl font-bold nav-text-color">时光书单</div>
@@ -36,11 +36,13 @@
 <script>
 import Header from "@/components/Header";
 import Booklist from "@/components/Booklist";
-import Category from '../components/Category.vue';
+import Category from '@/components/Category.vue';
 import Footer from "@/components/Footer";
 import Rank from "@/components/Rank";
 import NoteList from "@/components/NoteList";
 import HotList from "@/components/HotList";
+import * as Tool from "@/tool";
+
 export default {
   name: 'IndexPage',
   components:{
@@ -51,6 +53,33 @@ export default {
     NoteList,
     HotList,
     Footer
+  },
+  created() {
+    console.log('created')
+  },
+  beforeMount() {
+    console.log('mouted')
+    // this.user = Tool.user()
+    // this.isLogin = Tool.isLogin()
+  },
+  mounted() {
+    console.log('mouted')
+    // this.user = Tool.user()
+    // this.isLogin = Tool.isLogin()
+  },
+  computed:{
+    // isLogin() {
+    //   return Tool.isLogin()
+    // },
+    // user() {
+    //   return Tool.user()
+    // }
+  },
+  data(){
+    return {
+      isLogin:undefined,
+      user:undefined
+    }
   }
 }
 </script>
