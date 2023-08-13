@@ -19,10 +19,11 @@ const getters = {
 const actions = {
    home({commit, state}, params = {}) {
       api.home(params).then((resp) => {
-        console.log(`JSON.output3:${JSON.stringify(resp.result.hotbooks)}`)
+
         let dict = resp.result
         if(resp.returncode === 1000) {
           console.log('获取首页信息')
+          console.log(`JSON.output3:${dict.hotbooks.length} ---notes:${dict.notelist.length}`)
           commit(types.HOME, dict)
           return Promise.resolve(dict)
         } else {

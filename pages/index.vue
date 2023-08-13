@@ -21,7 +21,7 @@
 
     <HotList :books="hotbooks"/>
 
-    <NoteList />
+    <NoteList :notes="notelist"/>
 
     <!-- 图书分类 -->
     <Category />
@@ -55,11 +55,20 @@ export default {
     HotList,
     Footer
   },
-  async asyncData({ app, params, store }) {
-    store.dispatch('home/home', {}).then((resp) => {
+  async fetch() {
+    this.$store.dispatch('home/home', {}).then((resp) => {
+
     }).catch((e) => {
+
     })
   },
+  // async asyncData({ app, params, store }) {
+  //   // store.dispatch('home/home', {}).then((resp) => {
+  //   //
+  //   // }).catch((e) => {
+  //   //
+  //   // })
+  // },
   created() {
   },
   beforeMount() {
@@ -70,7 +79,8 @@ export default {
   },
   computed:{
     ...mapGetters({
-      hotbooks:'home/hotbooks'
+      hotbooks:'home/hotbooks',
+      notelist:'home/notelist'
     })
   },
   data(){
