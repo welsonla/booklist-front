@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>ic_quote@3x</title>
+    <desc>Created with Sketch.</desc>
+    <g id="组件" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.15">
+        <g id="ic_quote">
+            <g id="Group-4" transform="translate(1.000000, 4.000000)">
+                <circle id="Oval" fill="#191919" cx="5" cy="10" r="5"></circle>
+                <path d="M1.72616577,7.69760132 L9,9.76996262e-15" id="Path-5" stroke="#191919" stroke-width="2"></path>
+            </g>
+            <g id="Group-4" transform="translate(13.000000, 4.000000)">
+                <circle id="Oval" fill="#191919" cx="5" cy="10" r="5"></circle>
+                <path d="M1.72616577,7.69760132 L9,9.76996262e-15" id="Path-5" stroke="#191919" stroke-width="2"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,9 +1,9 @@
 <template>
   <Layout>
     <div class="flex flex-col">
-      <div class="nav-text-color text-center text-2xl font-semibold">
-        <a href="/">时光书单</a>
-      </div>
+<!--      <div class="nav-text-color text-center text-2xl font-semibold">-->
+<!--        <a href="/">时光书单</a>-->
+<!--      </div>-->
       <div class="flex flex-col login-form p-4 m-auto my-6">
         <!-- 登录与注册切换 -->
         <div class="flex flex-row items-center content-center justify-center text-lg mb-4">
@@ -31,7 +31,6 @@
               <input type="password" name="password" placeholder="密码" class="h-10 border-color rounded-md border text-sm pl-2" v-model="loginPass"/>
           </div>
           <button type="submit" class="h-8 bg-green-600 rounded-md text-white mt-4" @click="login">登录</button>
-          <p> --- {{ clickCount }} +++</p>
           <!-- End 登录表单 -->
         </template>
         <template v-else>

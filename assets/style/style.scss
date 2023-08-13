@@ -3,6 +3,7 @@ $content-color: #111;
 $title-color:#3377aa;
 $border-style: 1px solid #eaeaea;
 $nav-text-color: #614e3c;
+$button-color:#3db04d;
 
 body {
   background-color: $primary-color;
@@ -18,6 +19,10 @@ body {
 
 .border-color {
   border:1px solid $border-style;
+}
+
+.content-color{
+  color: $content-color;
 }
 
 .section-title{
@@ -48,4 +53,29 @@ body {
 .note-item-cover {
   height: 150px;
   width: 101px;
+}
+
+.note-quote{
+  padding: 10px 10px 10px 40px;
+  position: relative;
+}
+
+.note-quote::before{
+  content: "";
+  font-size: 30px;
+  position: absolute;
+  top:0;
+  left:0;
+  width: 30px;
+  height: 30px;
+  background-image: url("~/assets/images/svg_quote.svg");
+  background-repeat: no-repeat;
+}
+
+.note-quote-author{
+  padding-left: 40px;
+}
+
+.note-write-button{
+  cursor: pointer;
 }

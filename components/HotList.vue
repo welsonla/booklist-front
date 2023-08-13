@@ -1,9 +1,10 @@
 <template>
   <div class="flex-col mt-6">
     <div class="text-xl section-title">热门图书榜单</div>
-    <div class="flex flex-col">
+    <div class="flex flex-row flex-wrap">
       <template v-for="book in books">
-        <div class="flex flex-row py-4 border-b border-gray-200" :key="`book-`+book.id">
+        <a :href="`/book/`+book.id">
+        <div class="flex flex-row py-4 w-1/2" :key="`book-`+book.id">
           <div class="text-sm font-semibold text-gray-800">
             <img :src="book.cover_url" class="note-item-cover"/>
           </div>
@@ -16,6 +17,7 @@
             <div class="text-gray-600">{{ book.desc }}</div>
           </div>
         </div>
+        </a>
       </template>
     </div>
   </div>

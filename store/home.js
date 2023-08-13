@@ -19,7 +19,6 @@ const getters = {
 const actions = {
    home({commit, state}, params = {}) {
       api.home(params).then((resp) => {
-
         let dict = resp.result
         if(resp.returncode === 1000) {
           console.log('获取首页信息')

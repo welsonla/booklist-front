@@ -1,5 +1,5 @@
 <template>
-<div class="border-dashed border-gray-300 border-t text-center text-gray-400 leading-10 text-sm">
+<div class="border-dashed border-gray-300 border-t text-center text-gray-400 leading-10 h-20 text-sm">
   时光书单 &copy; 2023
 </div>
 </template>

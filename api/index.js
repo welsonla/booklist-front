@@ -25,3 +25,5 @@ export const login = (params = {}) => request(`post`, '/api/login', params)
 export const register = (params = {}) => request(`post`, '/api/register', params)
 
 export const home = (params = {}) => request(`post`, '/api/home', params)
+
+export const book = (params = {}) =>request(`post`, `/api/book/${params.id}`, params)

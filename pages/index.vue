@@ -2,12 +2,12 @@
   <div class="container flex flex-col flex-1 h-full m-auto">
     <Header/>
     <!-- 搜索框 -->
-    <div class="flex flex-col items-center content-center justify-center p-4">
-      <div class="text-3xl font-bold nav-text-color">时光书单</div>
-      <div class="flex flex-row rounded-full h-12  w-4/5 border-gray-500  border-2 mt-4 items-center ml-2 px-2 py-0">
+    <div class="flex flex-col items-center content-center justify-center py-4 mb-6">
+<!--      <div class="text-3xl font-bold nav-text-color">时光书单</div>-->
+      <div class="flex flex-row rounded-md h-12 w-full border-gray-500  border-2 mt-4 items-center ml-2 px-2 py-0">
         <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="inline-block w-6 h-6 text-gray-500"/>
         <input type="text" class="bg-transparent flex-1 ml-2" placeholder="搜索书名/作者/ISBN">
-        <div class="w-10 h-10 rounded-full bg-gray-800 flex flex-row items-center justify-center">
+        <div class="w-10 h-10 rounded-full flex flex-row items-center justify-center">
           <font-awesome-icon :icon="['fas', 'arrow-right']"  class="text-gray-400 h-6 w-6"/>
         </div>
       </div>
@@ -24,7 +24,7 @@
     <NoteList :notes="notelist"/>
 
     <!-- 图书分类 -->
-    <Category />
+    <Category :categories="categories"/>
     <!-- End 图书分类 -->
 
     <!-- Footer -->
@@ -42,6 +42,7 @@ import Footer from "@/components/Footer";
 import Rank from "@/components/Rank";
 import NoteList from "@/components/NoteList";
 import HotList from "@/components/HotList";
+import * as types from '@/store/types';
 
 
 export default {
@@ -55,12 +56,13 @@ export default {
     HotList,
     Footer
   },
-  async fetch() {
-    this.$store.dispatch('home/home', {}).then((resp) => {
-
-    }).catch((e) => {
-
-    })
+  fetch() {
+    console.log(`index.fetch`)
+    // this.$store.dispatch('home/home', {}).then((resp) => {
+    //     this.$store.home.commit(types.HOME, resp)
+    // }).catch((e) => {
+    //
+    // })
   },
   // async asyncData({ app, params, store }) {
   //   // store.dispatch('home/home', {}).then((resp) => {
@@ -76,11 +78,17 @@ export default {
     // this.isLogin = Tool.isLogin()
   },
   mounted() {
+    this.$store.dispatch('home/home', {}).then((resp) => {
+      this.$store.home.commit(types.HOME, resp)
+    }).catch((e) => {
+
+    })
   },
   computed:{
     ...mapGetters({
       hotbooks:'home/hotbooks',
-      notelist:'home/notelist'
+      notelist:'home/notelist',
+      categories:'home/categories'
     })
   },
   data(){
