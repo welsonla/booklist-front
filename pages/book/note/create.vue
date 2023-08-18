@@ -4,13 +4,13 @@
       <div class="nav-text-color">写笔记或摘录</div>
       <div class="flex flex-col note-write-form">
         <label for="chapter">章节名</label>
-        <input type="text" name="chapter">
+        <input type="text" name="chapter" v-model="chapter">
         <label for="page">页码</label>
-        <input type="text" name="page">
+        <input type="text" name="page" v-model="page">
         <label for="quote">摘录</label>
-        <textarea rows="5" name="quote" />
+        <textarea rows="5" name="quote" v-model="quote"/>
         <label for="comment">点评</label>
-        <textarea rows="5" name="comment" />
+        <textarea rows="5" name="comment" v-model="comment"/>
         <input type="button" value="发表">
       </div>
     </div>
@@ -26,6 +26,10 @@ export default {
   },
   data(){
     return {
+      chapter: undefined,
+      page: 0,
+      quote: undefined,
+      comment: undefined,
       bookid: this.$route.query.bookid
     }
   }

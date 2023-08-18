@@ -63,7 +63,7 @@ export default {
     }).catch((e) => {
       console.log(e)
     })
-    console.log(`route.data:${JSON.stringify(this.$route.params)}`)
+    // console.log(`route.data:${JSON.stringify(this.$route.params)}`)
   }
 }
 </script>

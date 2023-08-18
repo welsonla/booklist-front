@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapMutations, mapActions, mapGetters } from "vuex";
 import Header from "@/components/Header";
 import Booklist from "@/components/Booklist";
 import Category from '@/components/Category.vue';
@@ -56,13 +56,9 @@ export default {
     HotList,
     Footer
   },
-  fetch() {
-    console.log(`index.fetch`)
-    // this.$store.dispatch('home/home', {}).then((resp) => {
-    //     this.$store.home.commit(types.HOME, resp)
-    // }).catch((e) => {
-    //
-    // })
+  async fetch({store, params}) {
+      console.log(`index.fetch`)
+      await store.dispatch('home/home', {})
   },
   // async asyncData({ app, params, store }) {
   //   // store.dispatch('home/home', {}).then((resp) => {
@@ -71,19 +67,13 @@ export default {
   //   //
   //   // })
   // },
-  created() {
-  },
-  beforeMount() {
-    // this.user = Tool.user()
-    // this.isLogin = Tool.isLogin()
-  },
-  mounted() {
-    this.$store.dispatch('home/home', {}).then((resp) => {
-      this.$store.home.commit(types.HOME, resp)
-    }).catch((e) => {
+  // mounted() {
+  //   this.$store.dispatch('home/home', {}).then((resp) => {
+  //     this.$store.home.commit(types.HOME, resp)
+  //   }).catch((e) => {
 
-    })
-  },
+  //   })
+  // },
   computed:{
     ...mapGetters({
       hotbooks:'home/hotbooks',

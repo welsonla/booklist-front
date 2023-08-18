@@ -17,12 +17,11 @@ const getters = {
 }
 
 const actions = {
-   home({commit, state}, params = {}) {
-      api.home(params).then((resp) => {
+  home({commit }, params = {}) {
+    return api.home(params).then((resp) => {
         let dict = resp.result
         if(resp.returncode === 1000) {
-          console.log('获取首页信息')
-          console.log(`JSON.output3:${dict.hotbooks.length} ---notes:${dict.notelist.length}`)
+          console.log(`首页数据获取成功`)
           commit(types.HOME, dict)
           return Promise.resolve(dict)
         } else {
@@ -34,7 +33,7 @@ const actions = {
           message: e.message || 'request error'
         })
       })
-   }
+  }
 }
 
 const mutations = {

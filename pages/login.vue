@@ -59,14 +59,11 @@
 import Layout from "@/pages/layout";
 import * as api from '@/api';
 import { mapActions } from 'vuex';
-
+//https://juejin.cn/post/6911577905441013773
 export default {
   name: "login",
   components: {Layout},
   computed:{
-    clickCount() {
-      return this.$store.state.user.counter
-    }
   },
   methods:{
     updateTab(index){
@@ -78,7 +75,9 @@ export default {
         password: this.loginPass
       }
       this.$store.dispatch('user/login', params).then((resp) => {
-
+          this.$router.push({
+            path: "/"
+          })
       }).catch((e) => {
 
       })
