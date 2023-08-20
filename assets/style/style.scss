@@ -4,8 +4,13 @@ $title-color:#3377aa;
 $border-style: 1px solid #eaeaea;
 $nav-text-color: #614e3c;
 $button-color:#3db04d;
+html,body, #__nuxt, #__layout{
+  height:100%!important;
+  width: 100%!important;
+}
 
 body {
+   font-family: Arial, Helvetica, sans-serif;
   background-color: $primary-color;
 }
 

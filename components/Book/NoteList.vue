@@ -8,29 +8,38 @@
       </div>
     </div>
     <!-- End 顶部导航 -->
-    <template v-for="note in notes">
-      <!-- 笔记标注 -->
-      <div class="py-4">
-        <div class="text-sm text-gray-800 mt-2 note-quote">
-          还记得《漫长的季节》播出的时候，龚彪最后的离开赚足了多少人的眼泪，而王响最后的结局有人写出了上千字地透彻分析，来证明那个喊着向前看，别回头的王响只是一种意念和希翼。 东北工业的落寞在一众演员的精湛表...
+    <template v-if="notes.length > 0">
+      <template v-for="note in notes">
+        <!-- 笔记标注 -->
+        <div class="py-4">
+          <div class="text-sm text-gray-800 mt-2 note-quote">
+            {{ note.content }}
+          </div>
+          <div class="leading-12 note-quote-author">
+            <span class="text-blue-500 text-sm">{{ note.user.name  }}</span>
+            <span class="text-gray-400 text-sm">{{ note.created_at}}</span>
+            <span class="text-gray-400 text-sm">{{ note.chapter }}　<span v-show="note.page > 0">{{ note.page }}</span></span>
+          </div>
         </div>
-        <div class="leading-12 note-quote-author">
-          <span class="text-blue-500 text-sm">welsonla</span>
-          <span class="text-gray-400 text-sm">2023-08-13 18:00:00</span>
-          <span class="text-gray-400 text-sm">章节一　P24</span>
-        </div>
-      </div>
-      <!-- End 笔记标注 -->
+        <!-- End 笔记标注 -->
+      </template>
+    </template>
+    <template v-else>
+      <NoData :message="`暂无笔记`"/>
     </template>
   </div>
 </template>
 
 <script>
+import NoData from "~/components/NoData";
 export default {
   name: "NoteList",
   props:{
-    bookId:Number,
+    bookId:String,
     notes:Array
+  },
+  components:{
+    NoData
   },
   methods:{
     writeComment() {

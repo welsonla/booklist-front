@@ -1,8 +1,10 @@
 <template>
-  <div class="container flex flex-col flex-1 h-full m-auto">
+  <div class="container flex flex-col h-full m-auto">
     <Header />
+    <div class="flex flex-col flex-1">
     <slot>
     </slot>
+    </div>
     <!-- Footer -->
     <Footer />
     <!-- End Footer -->

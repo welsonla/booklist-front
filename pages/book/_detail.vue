@@ -19,7 +19,7 @@
       </div>
 
       <!--读书笔记 -->
-      <NoteList :bookId="bookId" :notes="[]"/>
+      <NoteList :bookId="bookId" :notes="quotes"/>
 
       <!-- 书评列表 -->
       <CommentList :bookId="bookId" :comments="[]"/>
@@ -49,7 +49,8 @@ export default {
   data(){
     return {
       book:undefined,
-      bookId:this.$route.params.detail
+      bookId:this.$route.params.detail,
+      quotes:[]
     }
   },
   mounted() {
@@ -57,6 +58,7 @@ export default {
       console.log(`Book.detail:${resp.result}`)
       if(resp.returncode === 1000) {
         this.book = resp.result
+        this.quotes = resp.result.quotes
       } else {
         console.log(`error:${resp}`)
       }
