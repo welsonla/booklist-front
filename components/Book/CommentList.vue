@@ -8,7 +8,7 @@
         </div>
       </div>
 
-      <template v-for="i in 6">
+      <template v-for="comment in comments">
         <div class="py-4 border-b border-dashed">
           <div class="leading-12">
             <span class="text-blue-500 text-sm">welsonla</span>
@@ -26,12 +26,16 @@
 <script>
 export default {
   name: "CommentList",
+  props:{
+    bookId:Number,
+    comments:Array
+  },
   methods:{
     writeComment() {
       this.$router.push({
         path: '/book/note/create',
         query:{
-          bookid:1
+          bookid:this.bookId
         }
       })
     }

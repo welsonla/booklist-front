@@ -18,9 +18,6 @@ export default {
   },
 
   // ssr:true,
-  // Vuex
-  // store: '~/store',
-
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '~/assets/style/style.scss'
@@ -44,6 +41,18 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
   ],
+  // axios: {
+  //   proxy:true,
+  //   prefix: '/api',
+  //   credentials: true
+  // },
+  // proxy:{
+  //   target: "http://localhost:5000",
+  //   pathRewrite: {
+  //     '^/api': '/api',
+  //     changeOrigin: true
+  //   }
+  // },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

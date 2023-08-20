@@ -8,7 +8,7 @@
       </div>
     </div>
     <!-- End 顶部导航 -->
-    <template v-for="i in 6">
+    <template v-for="note in notes">
       <!-- 笔记标注 -->
       <div class="py-4">
         <div class="text-sm text-gray-800 mt-2 note-quote">
@@ -29,14 +29,15 @@
 export default {
   name: "NoteList",
   props:{
-    bookId:Number
+    bookId:Number,
+    notes:Array
   },
   methods:{
     writeComment() {
       this.$router.push({
         path: '/book/note/create',
         query:{
-          bookid:1
+          bookid:this.bookId
         }
       })
     }

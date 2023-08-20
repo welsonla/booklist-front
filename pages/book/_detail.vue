@@ -19,10 +19,10 @@
       </div>
 
       <!--读书笔记 -->
-      <NoteList />
+      <NoteList :bookId="bookId" :notes="[]"/>
 
       <!-- 书评列表 -->
-      <CommentList />
+      <CommentList :bookId="bookId" :comments="[]"/>
   </Layout>
 </template>
 
@@ -63,7 +63,6 @@ export default {
     }).catch((e) => {
       console.log(e)
     })
-    // console.log(`route.data:${JSON.stringify(this.$route.params)}`)
   }
 }
 </script>

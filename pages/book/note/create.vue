@@ -11,7 +11,7 @@
         <textarea rows="5" name="quote" v-model="quote"/>
         <label for="comment">点评</label>
         <textarea rows="5" name="comment" v-model="comment"/>
-        <input type="button" value="发表">
+        <input type="button" value="发表" @click="submit">
       </div>
     </div>
   </Layout>
@@ -19,10 +19,33 @@
 
 <script>
 import Layout from "@/pages/layout";
+import * as api from "@/api";
+import Cookie from "js-cookie";
 export default {
   name: "create",
   components: {
     Layout
+  },
+  methods: {
+    submit() {
+      let params = {
+        bookid: this.bookid,
+        chapter: this.chapter,
+        content: this.quote,
+        comment: this.comment,
+        page: this.page
+      }
+      api.createNote(params).then((resp) => {
+        console.log(`create.quote.success:${resp}`)
+        if (resp.returncode === 1000) {
+          this.$router.push({
+            path: `/book/note/${resp.result.id}`
+          })
+        }
+      }).catch((e) => {
+        console.log(`create.quote.error:${e}`)
+      })
+    }
   },
   data(){
     return {
@@ -32,6 +55,9 @@ export default {
       comment: undefined,
       bookid: this.$route.query.bookid
     }
+  },
+  mounted() {
+    console.log(Cookie.get('token'))
   }
 }
 </script>
