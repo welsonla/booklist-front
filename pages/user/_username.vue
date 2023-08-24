@@ -91,6 +91,8 @@ Geek
 <script>
 import NoData from "@/components/NoData";
 import Layout from "@/pages/layout";
+import * as api from '@/api';
+
 // import {mapGetters, mapMutations, mapState} from 'vuex';
 export default {
   name: "user",
@@ -98,8 +100,12 @@ export default {
     Layout,
     NoData
   },
-  mounted() {
-    // this.fetchUser()
+  async fetch() {
+    await api.user({userid:this.$route.params.username}).then((resp) => {
+      console.log(`user.data:${JSON.stringify(resp)}`)
+    }).catch((error) => {
+      console.log(`error:${error}`)
+    })
   },
   computed: {
     // user() {
@@ -117,7 +123,8 @@ export default {
   },
   data() {
     return {
-      list: []
+      userid: this.$route.params.username,
+      list:[]
   }
   }
 }
@@ -126,6 +133,6 @@ export default {
 <style scoped>
 .leftBar{
   width: 250px;
-  background-color: #f6f8fa;
+  background-color: #F6F6F2;
 }
 </style>

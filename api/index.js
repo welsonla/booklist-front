@@ -42,3 +42,5 @@ export const createNote = (params = {}) => request(`post`, '/api/book/quote/crea
 
 // 摘抄详情
 export const note = (params = {}) => request(`post`, `/api/book/quote/${params.id}`, params)
+
+export const user = (params = {}) =>request(`post`, `/api/user/${params.userid}`, params)
