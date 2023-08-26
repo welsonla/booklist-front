@@ -85,9 +85,14 @@ body {
   cursor: pointer;
 }
 
-.vue-star-rating{
-  line-height: 20px;
-  padding-bottom: 5px;
+.vue-star-rating-star{
+  margin-top: -3px;
+  //line-height: 20px;
+  //padding-bottom: 5px;
+}
+
+.vue-star-rating-rating-text{
+  display: none;
 }
 
 .rating-text{

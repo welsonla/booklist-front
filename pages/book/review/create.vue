@@ -24,10 +24,10 @@
   <!-- End 评分 -->
   <!-- 编写内容 -->
   <div class="flex flex-col write-form ">
-    <input type="text" class="review-title" placeholder="添加标题">
-    <textarea rows="10" cols="8" class="mt-4 review-content">
+    <input type="text" class="review-title" placeholder="添加标题" v-model="title">
+    <textarea rows="10" cols="8" class="mt-4 review-content" v-model="content">
     </textarea>
-    <input type="button" class="submit-button" value="提交" />
+    <input type="button" class="submit-button" value="提交" @click="submit" />
   </div>
   <!-- End 编写内容 -->
   </div>
@@ -36,14 +36,42 @@
 
 <script>
 import Layout from "@/pages/layout";
+import * as api from "@/api";
 export default {
   name: "create",
   components: {
     Layout,
   },
+  methods:{
+    submit() {
+      let params = {
+        book_id:this.bookid,
+        title:this.title,
+        content:this.content,
+        rating:this.rating
+      }
+      api.createReview(params).then((resp) => {
+        console.log(`create.review.success:${JSON.stringify(resp)}`)
+        if(resp.returncode === 1000) {
+          let itemId = resp.result.id
+          this.$router.push({
+            path:`/book/review/${itemId}`
+          })
+        }
+      }).catch((e) => {
+        console.log(`create.review.error:${e}`)
+      })
+    }
+  },
+  mounted() {
+    document.getElementsByClassName("vue-star-rating-rating-text").hide()
+  },
   data() {
     return {
+      title:'',
       rating: 0,
+      content:'',
+      bookid: this.$route.query.bookid,
       starStyle: {
         fullStarColor: '#ed8a19',
         emptyStarColor: '#737373',

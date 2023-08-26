@@ -12,13 +12,13 @@
       <template v-for="note in notes">
         <!-- 笔记标注 -->
         <div class="py-4">
-          <div class="text-sm text-gray-800 mt-2 note-quote">
+          <div class="text-xs text-gray-800 mt-2 note-quote">
             {{ note.content }}
           </div>
           <div class="leading-12 note-quote-author">
-            <span class="text-blue-500 text-sm">{{ note.user.name  }}</span>
-            <span class="text-gray-400 text-sm">{{ note.created_at}}</span>
-            <span class="text-gray-400 text-sm">{{ note.chapter }}　<span v-show="note.page > 0">{{ note.page }}</span></span>
+            <span class="text-blue-500 text-xs">{{ note.user.name  }}</span>
+            <span class="text-gray-400 text-xs">{{ note.created_at}}</span>
+            <span class="text-gray-400 text-xs">{{ note.chapter }}　<span v-show="note.page > 0">{{ note.page }}</span></span>
           </div>
         </div>
         <!-- End 笔记标注 -->

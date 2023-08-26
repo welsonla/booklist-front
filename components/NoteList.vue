@@ -12,7 +12,7 @@
               <a href="">{{ note.title }}</a>
             </div>
             <div class="text-slate-400 text-sm leading-8">{{ note.user_id }} 评论 {{ note.book_id }}</div>
-            <div class="text-gray-600">{{ note.content }}</div>
+            <div class="text-gray-600 text-xs">{{ note.content }}</div>
           </div>
         </div>
       </template>

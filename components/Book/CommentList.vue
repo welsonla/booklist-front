@@ -7,15 +7,16 @@
           <font-awesome-icon :icon="['fas', 'pen-to-square']"  class="text-green-600 h-3 w-3"/>&nbsp;写书评
         </div>
       </div>
-      <template v-if="comments.length > 0">
-        <template v-for="comment in comments">
+      <template v-if="reviews.length > 0">
+        <template v-for="review in reviews">
           <div class="py-4 border-b border-dashed">
             <div class="leading-12">
-              <span class="text-blue-500 text-sm">welsonla</span>
-              <span class="text-gray-400 text-sm">2023-08-13 18:00:00</span>
+              <span class="text-blue-500 text-sm hover:bg-amber-100">{{ review.author.name }}</span>
+              <span class="text-gray-400 text-sm">{{ review.created_at }}</span>
             </div>
-            <div class="text-sm text-gray-800 mt-2">
-              还记得《漫长的季节》播出的时候，龚彪最后的离开赚足了多少人的眼泪，而王响最后的结局有人写出了上千字地透彻分析，来证明那个喊着向前看，别回头的王响只是一种意念和希翼。 东北工业的落寞在一众演员的精湛表...
+            <div class="bg-gray-200 py-2 text-xs pl-2">{{ review.title }}</div>
+            <div class="text-xs text-gray-800 mt-2">
+              {{ review.content.substring(0,200) }}<a :href="`/book/review/`+review.id" class="text-blue-400">(查看原文)</a>
             </div>
           </div>
         </template>
@@ -33,7 +34,7 @@ export default {
   name: "CommentList",
   props:{
     bookId:String,
-    comments:Array
+    reviews:Array
   },
   components:{
     NoData

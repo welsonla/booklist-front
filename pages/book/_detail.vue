@@ -22,7 +22,7 @@
       <NoteList :bookId="bookId" :notes="quotes"/>
 
       <!-- 书评列表 -->
-      <CommentList :bookId="bookId" :comments="[]"/>
+      <CommentList :bookId="bookId" :reviews="reviews"/>
   </Layout>
 </template>
 
@@ -50,7 +50,8 @@ export default {
     return {
       book:undefined,
       bookId:this.$route.params.detail,
-      quotes:[]
+      quotes:[],
+      reviews:[]
     }
   },
   mounted() {
@@ -59,6 +60,7 @@ export default {
       if(resp.returncode === 1000) {
         this.book = resp.result
         this.quotes = resp.result.quotes
+        this.reviews = resp.result.reviews || []
       } else {
         console.log(`error:${resp}`)
       }

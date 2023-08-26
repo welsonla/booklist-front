@@ -44,3 +44,9 @@ export const createNote = (params = {}) => request(`post`, '/api/book/quote/crea
 export const note = (params = {}) => request(`post`, `/api/book/quote/${params.id}`, params)
 
 export const user = (params = {}) =>request(`post`, `/api/user/${params.userid}`, params)
+
+// 发表书评
+export const createReview = (params = {}) => request(`post`,'/api/book/review/create', params)
+
+// 获取书评详情
+export const reviewDetail = (params = {}) => request(`post`, `/api/book/review/${params.id}`, params)
