@@ -102,3 +102,30 @@ body {
   margin-top: 5px;
   color: #ABABAB;
 }
+
+.review-form {
+  width: 500px;
+}
+
+.review-title {
+  border-radius: 8px;
+  border: 1px solid #d8dee4;
+  height: 35px;
+  padding-left: 15px;
+}
+
+.review-content {
+  border-radius: 8px;
+  border: 1px solid #d8dee4;
+  padding: 15px;
+}
+
+.submit-button {
+  width: 200px;
+  height: 30px;
+  background-color: $button-color;
+  color: #FFF;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
