@@ -6,7 +6,7 @@
         </div>
         <div class="flex flex-row py-4 w-1/2" :key="`book-`+book.id">
           <div class="text-sm font-semibold text-gray-800">
-            <img :src="book.cover_url" class="note-item-cover"/>
+            <img :src="cover_url(book.image_url)" class="note-item-cover"/>
           </div>
           <div class="flex flex-col flex-1 text-sm text-gray-500 ml-4">
             <div class="leading-14">作者: <a href="" class="text-blue-500">{{ book.author }}</a></div>
@@ -31,6 +31,7 @@ import Layout from '@/pages/layout';
 import * as api from '@/api';
 import NoteList from '@/components/Book/NoteList';
 import CommentList from "@/components/Book/CommentList";
+import * as Tool from "@/tool";
 
 export default {
   name: "BookDetail",
@@ -39,6 +40,14 @@ export default {
     NoteList,
     CommentList
   },
+  data(){
+    return {
+      book:undefined,
+      bookId:this.$route.params.detail,
+      quotes:[],
+      reviews:[]
+    }
+  },
   computed:{
     bookInfo() {
       let info = this.book
@@ -46,12 +55,9 @@ export default {
       return info
     }
   },
-  data(){
-    return {
-      book:undefined,
-      bookId:this.$route.params.detail,
-      quotes:[],
-      reviews:[]
+  methods:{
+    cover_url(url) {
+      return Tool.cover_url(url)
     }
   },
   mounted() {

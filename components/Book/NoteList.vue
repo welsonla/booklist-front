@@ -17,7 +17,7 @@
           </div>
           <div class="leading-12 note-quote-author">
             <span class="text-blue-500 text-xs">{{ note.user.name  }}</span>
-            <span class="text-gray-400 text-xs">{{ note.created_at}}</span>
+            <span class="text-gray-400 text-xs">{{ note.created_at }}</span>
             <span class="text-gray-400 text-xs">{{ note.chapter }}　<span v-show="note.page > 0">{{ note.page }}</span></span>
           </div>
         </div>

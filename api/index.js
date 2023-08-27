@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Cookie from "js-cookie";
 
-const host = "http://127.0.0.1:5000"
+export const host = "http://127.0.0.1:5000"
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.interceptors.request.use(config => {
   config.headers["sign"] = Cookie.get('token')

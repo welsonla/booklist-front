@@ -21,7 +21,9 @@
 
     <HotList :books="hotbooks"/>
 
-    <NoteList :notes="notelist"/>
+    <!-- 最受欢迎的书评 -->
+    <NoteList :notes="reviews"/>
+    <!-- End 最受欢迎的书评 -->
 
     <!-- 图书分类 -->
     <Category :categories="categories"/>
@@ -57,27 +59,15 @@ export default {
     Footer
   },
   async fetch({store, params}) {
-      console.log(`index.fetch`)
-      await store.dispatch('home/home', {})
+      await store.dispatch('home/home', {}).then((resp) => {
+        console.log(`${JSON.stringify(resp)}`)
+      })
   },
-  // async asyncData({ app, params, store }) {
-  //   // store.dispatch('home/home', {}).then((resp) => {
-  //   //
-  //   // }).catch((e) => {
-  //   //
-  //   // })
-  // },
-  // mounted() {
-  //   this.$store.dispatch('home/home', {}).then((resp) => {
-  //     this.$store.home.commit(types.HOME, resp)
-  //   }).catch((e) => {
-
-  //   })
-  // },
   computed:{
     ...mapGetters({
       hotbooks:'home/hotbooks',
       notelist:'home/notelist',
+      reviews: 'home/reviews',
       categories:'home/categories'
     })
   },
