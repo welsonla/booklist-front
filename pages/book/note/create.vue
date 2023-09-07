@@ -10,7 +10,17 @@
         <label for="quote">摘录</label>
         <textarea rows="5" name="quote" v-model="quote"/>
         <label for="comment">点评</label>
-        <textarea rows="5" name="comment" v-model="comment"/>
+        <div class="editor-container">
+          <div class="quill-editor"
+               :content="comment"
+               @change="onEditorChange($event)"
+               @blur="onEditorBlur($event)"
+               @focus="onEditorFocus($event)"
+               @ready="onEditorReady($event)"
+               v-quill:myQuillEditor="editorOption">
+          </div>
+        </div>
+<!--        <textarea rows="5" name="comment" v-model="comment"/>-->
         <input type="button" value="发表" @click="submit">
       </div>
     </div>
@@ -45,6 +55,19 @@ export default {
       }).catch((e) => {
         console.log(`create.quote.error:${e}`)
       })
+    },
+    onEditorBlur(editor) {
+      console.log('editor blur!', editor)
+    },
+    onEditorFocus(editor) {
+      console.log('editor focus!', editor)
+    },
+    onEditorReady(editor) {
+      console.log('editor ready!', editor)
+    },
+    onEditorChange({ editor, html, text }) {
+      console.log('editor change!', editor, html, text)
+      this.content = html
     }
   },
   data(){
@@ -53,7 +76,16 @@ export default {
       page: 0,
       quote: undefined,
       comment: undefined,
-      bookid: this.$route.query.bookid
+      bookid: this.$route.query.bookid,
+      editorOption: {
+        // some quill options
+        modules: {
+          toolbar: [
+            ['bold', 'italic', 'underline', 'strike'],
+            ['blockquote', 'code-block']
+          ]
+        }
+      }
     }
   },
   mounted() {
@@ -96,4 +128,19 @@ export default {
   margin-top: 20px;
   margin-bottom: 10px;
 }
+
+.editor-container {
+  padding: 0 0 40px 0;
+  background-color: white;
+  .ql-toolbar{
+    background-color: white;
+  }
+  .quill-editor {
+    min-height: 200px;
+    max-height: 400px;
+    overflow-y: auto;
+    background-color: white;
+  }
+}
+
 </style>

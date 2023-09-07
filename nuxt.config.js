@@ -20,13 +20,17 @@ export default {
   // ssr:true,
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '~/assets/style/style.scss'
+    '~/assets/style/style.scss',
+    'quill/dist/quill.snow.css',
+    'quill/dist/quill.bubble.css',
+    'quill/dist/quill.core.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/fontawesome.js',
-    {src:'~/plugins/rating.js', ssr:false}
+    {src:'~/plugins/rating.js', ssr:false},
+    {src:'~/plugins/quill.js', ssr: false}
     // {src:'~/plugins/localStorage.js', ssr: false}
   ],
 
