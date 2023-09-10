@@ -84,7 +84,8 @@ export default {
             ['bold', 'italic', 'underline', 'strike'],
             ['blockquote', 'code-block']
           ]
-        }
+        },
+        placeholder:"随手记录，别让灵感消失"
       }
     }
   },
@@ -127,20 +128,6 @@ export default {
   line-height: 25px;
   margin-top: 20px;
   margin-bottom: 10px;
-}
-
-.editor-container {
-  padding: 0 0 40px 0;
-  background-color: white;
-  .ql-toolbar{
-    background-color: white;
-  }
-  .quill-editor {
-    min-height: 200px;
-    max-height: 400px;
-    overflow-y: auto;
-    background-color: white;
-  }
 }
 
 </style>

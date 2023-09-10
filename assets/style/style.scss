@@ -129,3 +129,17 @@ body {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
+.editor-container {
+  padding: 0 0 40px 0;
+  background-color: white;
+  .ql-toolbar{
+    background-color: white;
+  }
+  .quill-editor {
+    min-height: 200px;
+    max-height: 400px;
+    overflow-y: auto;
+    background-color: white;
+  }
+}

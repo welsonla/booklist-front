@@ -15,7 +15,7 @@
               <span class="text-gray-400 text-sm">{{ review.created_at }}</span>
             </div>
             <div class="bg-gray-200 py-2 text-xs pl-2">{{ review.title }}</div>
-            <div class="text-xs text-gray-800 mt-2">
+            <div class="text-xs text-gray-800 mt-2 leading-5">
               {{ review.content.substring(0,200) }}<a :href="`/book/review/`+review.id" class="text-blue-400">(查看原文)</a>
             </div>
           </div>

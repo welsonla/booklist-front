@@ -12,7 +12,7 @@
       <template v-for="note in notes">
         <!-- 笔记标注 -->
         <div class="py-4">
-          <div class="text-xs text-gray-800 mt-2 note-quote">
+          <div class="text-xs text-gray-800 mt-2 note-quote leading-5">
             {{ note.content }}
           </div>
           <div class="leading-12 note-quote-author">
