@@ -2,13 +2,22 @@
   <Layout>
     <div class="flex flex-col">
       <div class="nav-text-color">写笔记或摘录</div>
+      <!-- 图书信息 -->
+      <div class="book-info flex flex-row mt-4" v-if="book">
+        <img :src="'http://127.0.0.1:5000/'+book.image_url" class="book-cover">
+        <div class="flex flex-col justify-around ml-2">
+          <div class="text-sky-600">{{ book.name }}</div>
+          <div class="text-xs text-gray-400">{{ book.author}}</div>
+        </div>
+      </div>
+      <!-- End 图书信息 -->
       <div class="flex flex-col note-write-form">
         <label for="chapter">章节名</label>
-        <input type="text" name="chapter" v-model="chapter">
+        <input type="text" name="chapter" class="border border-gray-300" v-model="chapter">
         <label for="page">页码</label>
-        <input type="text" name="page" v-model="page">
+        <input type="text" name="page" class="border border-gray-300" v-model="page">
         <label for="quote">摘录</label>
-        <textarea rows="5" name="quote" v-model="quote"/>
+        <textarea rows="5" name="quote" class="border border-gray-300" v-model="quote"/>
         <label for="comment">点评</label>
         <div class="editor-container">
           <div class="quill-editor"
@@ -21,7 +30,7 @@
           </div>
         </div>
 <!--        <textarea rows="5" name="comment" v-model="comment"/>-->
-        <input type="button" value="发表" @click="submit">
+        <input type="button" value="发布" @click="submit">
       </div>
     </div>
   </Layout>
@@ -67,11 +76,12 @@ export default {
     },
     onEditorChange({ editor, html, text }) {
       console.log('editor change!', editor, html, text)
-      this.content = html
+      this.comment = html
     }
   },
   data(){
     return {
+      book:undefined,
       chapter: undefined,
       page: 0,
       quote: undefined,
@@ -90,44 +100,55 @@ export default {
     }
   },
   mounted() {
-    console.log(Cookie.get('token'))
+    api.book({"id":this.bookid}).then((resp) => {
+      console.log(`Book.detail:${resp.result}`)
+      if(resp.returncode === 1000) {
+        this.book = resp.result
+        // this.quotes = resp.result.quotes
+        // this.reviews = resp.result.reviews || []
+      } else {
+        console.log(`error:${resp}`)
+      }
+    }).catch((e) => {
+      console.log(e)
+    })
   }
 }
 </script>
 
 <style lang="scss" scoped>
 @import "assets/style/style.scss";
-.note-write-form{
-  color: $content-color;
-  font-size: 14px;
-}
-
-.note-write-form input[type="text"] {
-  height: 35px;
-  border-radius: 8px;
-  border-color: $border-style;
-}
-
-.note-write-form textarea {
-  border-radius: 8px;
-  border-color: $border-style;
-}
-
-.note-write-form input[type="button"] {
-  width:  200px;
-  height: 30px;
-  background-color: $button-color;
-  color: #FFF;
-  border-radius: 5px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.note-write-form label {
-  height: 25px;
-  line-height: 25px;
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
+//.note-write-form{
+//  color: $content-color;
+//  font-size: 14px;
+//}
+//
+//.note-write-form input[type="text"] {
+//  height: 35px;
+//  border-radius: 8px;
+//  border-color: $border-style;
+//}
+//
+//.note-write-form textarea {
+//  border-radius: 8px;
+//  border-color: $border-style;
+//}
+//
+//.note-write-form input[type="button"] {
+//  width:  200px;
+//  height: 30px;
+//  background-color: $button-color;
+//  color: #FFF;
+//  border-radius: 5px;
+//  margin-top: 20px;
+//  margin-bottom: 20px;
+//}
+//
+//.note-write-form label {
+//  height: 25px;
+//  line-height: 25px;
+//  margin-top: 20px;
+//  margin-bottom: 10px;
+//}
 
 </style>
