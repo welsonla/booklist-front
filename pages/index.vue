@@ -6,8 +6,8 @@
 <!--      <div class="text-3xl font-bold nav-text-color">时光书单</div>-->
       <div class="flex flex-row rounded-md h-12 w-full border-gray-500  border-2 mt-4 items-center ml-2 px-2 py-0">
         <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="inline-block w-6 h-6 text-gray-500"/>
-        <input type="text" class="bg-transparent flex-1 ml-2" placeholder="搜索书名/作者/ISBN">
-        <div class="w-10 h-10 rounded-full flex flex-row items-center justify-center">
+        <input type="text" class="bg-transparent flex-1 ml-2" placeholder="搜索书名/作者/ISBN" v-model="searchText">
+        <div class="w-10 h-10 rounded-full flex flex-row items-center justify-center cursor-pointer" @click="search">
           <font-awesome-icon :icon="['fas', 'arrow-right']"  class="text-gray-400 h-6 w-6"/>
         </div>
       </div>
@@ -45,7 +45,7 @@ import Rank from "@/components/Rank";
 import NoteList from "@/components/NoteList";
 import HotList from "@/components/HotList";
 import * as types from '@/store/types';
-
+import {patch} from "axios";
 
 export default {
   name: 'IndexPage',
@@ -60,7 +60,7 @@ export default {
   },
   async fetch({store, params}) {
       await store.dispatch('home/home', {}).then((resp) => {
-        console.log(`${JSON.stringify(resp)}`)
+        // console.log(`${JSON.stringify(resp)}`)
       })
   },
   computed:{
@@ -74,7 +74,16 @@ export default {
   data(){
     return {
       isLogin:undefined,
-      user:undefined
+      user:undefined,
+      searchText:undefined
+    }
+  },
+  methods:{
+    search() {
+      let path = `/search?q=${this.searchText}`
+      this.$router.push({
+          path: path
+      })
     }
   }
 }

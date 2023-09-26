@@ -101,7 +101,7 @@ export default {
   },
   mounted() {
     api.book({"id":this.bookid}).then((resp) => {
-      console.log(`Book.detail:${resp.result}`)
+      // console.log(`Book.detail:${resp.result}`)
       if(resp.returncode === 1000) {
         this.book = resp.result
         // this.quotes = resp.result.quotes

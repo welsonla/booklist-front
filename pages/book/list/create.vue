@@ -8,12 +8,12 @@
 <!--    <textarea name="content" id="content" cols="30" rows="10" placeholder="输入书单介绍" class="review-content mt-4"></textarea>-->
       <div class="editor-container mt-4">
           <div class="quill-editor"
-               :content="content"
-               @change="onEditorChange($event)"
-               @blur="onEditorBlur($event)"
-               @focus="onEditorFocus($event)"
-               @ready="onEditorReady($event)"
-               v-quill:myQuillEditor="editorOption">
+            :content="content"
+            @change="onEditorChange($event)"
+            @blur="onEditorBlur($event)"
+            @focus="onEditorFocus($event)"
+            @ready="onEditorReady($event)"
+            v-quill:myQuillEditor="editorOption">
           </div>
         </div>
 

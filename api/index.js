@@ -50,3 +50,6 @@ export const createReview = (params = {}) => request(`post`,'/api/book/review/cr
 
 // 获取书评详情
 export const reviewDetail = (params = {}) => request(`post`, `/api/book/review/${params.id}`, params)
+
+// 搜索
+export const search = (params = {}) => request(`post`, '/api/search', params)
