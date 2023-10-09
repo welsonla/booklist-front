@@ -1,6 +1,6 @@
 <template>
 <Layout>
-<div class="flex flex-col" v-show="review">
+<div class="flex flex-col" v-if="review">
   <div class="text-lg text-gray-700">{{ review.title }}</div>
 
   <!-- 作者与图书信息 -->
@@ -15,13 +15,13 @@
 
       <div class="text-xs flex flex-col justify-between ml-2">
           <!-- 作者发表 -->
-          <div class="text-gray-400 text-xs">
-            <a :href="`/user/`+review.author_id" class="text-blue-400 hover:bg-amber-100">{{ review.author.name  }}</a>
+          <div class="text-gray-400 text-xs" v-if="review.author">
+            <a :href="`/user/`+review.author_id" class="text-blue-400 hover:bg-amber-100">{{ review.author.author  }}</a>
             发表于 {{ review.created_at }}
           </div>
           <!-- End 作者发表 -->
           <!-- 图书信息 -->
-          <div class="">
+          <div class="" v-if="review.book">
             <a class="text-blue-400 text-xs hover:bg-amber-100" href="`/book/`+review.book_id">{{ review.book.name }}</a>
             <star-rating v-model="review.rating"
                          :star-size="14"
@@ -35,9 +35,7 @@
   </div>
   <!-- End 作者与图书信息 -->
   <!-- 书评内容 -->
-  <div class="text-xs text-gray-600 leading-5 whitespace-pre">
-    {{ review.content }}
-  </div>
+  <div class="text-sm text-gray-600 mt-4 leading-5 whitespace-pre" v-show="review" v-html="review.content"></div>
   <!-- End 书评内容 -->
 
 </div>
@@ -64,7 +62,12 @@ export default {
   },
   data() {
     return {
-      review:null
+      review:undefined
+    }
+  },
+  head() {
+    return {
+      title: '书评'
     }
   }
 }

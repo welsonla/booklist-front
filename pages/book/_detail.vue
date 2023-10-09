@@ -45,7 +45,8 @@ export default {
       book:undefined,
       bookId:this.$route.params.detail,
       quotes:[],
-      reviews:[]
+      reviews:[],
+      title:''
     }
   },
   computed:{
@@ -67,12 +68,18 @@ export default {
         this.book = resp.result
         this.quotes = resp.result.quotes
         this.reviews = resp.result.reviews || []
+        this.title = this.book.name
       } else {
         console.log(`error:${resp}`)
       }
     }).catch((e) => {
       console.log(e)
     })
+  },
+  head() {
+    return {
+      title: this.title
+    }
   }
 }
 </script>

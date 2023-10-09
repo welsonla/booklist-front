@@ -112,6 +112,11 @@ export default {
     }).catch((e) => {
       console.log(e)
     })
+  },
+  head() {
+    return {
+      title: '创建书单'
+    }
   }
 }
 </script>

@@ -16,10 +16,10 @@
     <div class="leading-7 text-sm text-gray-700">打分:</div>
     <div class=" flex flex-col ml-2">
       <star-rating v-model="rating"
-                   :star-size="18"
-                   :animate="true"
-                   :inline="true"
-                   text-class="rating-text"></star-rating>
+                  :star-size="18"
+                  :animate="true"
+                  :inline="true"
+                  text-class="rating-text"></star-rating>
     </div>
   </div>
   <!-- End 评分 -->
@@ -30,12 +30,12 @@
     </textarea> -->
     <div class="editor-container mt-2">
           <div class="quill-editor"
-               :content="comment"
-               @change="onEditorChange($event)"
-               @blur="onEditorBlur($event)"
-               @focus="onEditorFocus($event)"
-               @ready="onEditorReady($event)"
-               v-quill:myQuillEditor="editorOption">
+                :content="comment"
+                @change="onEditorChange($event)"
+                @blur="onEditorBlur($event)"
+                @focus="onEditorFocus($event)"
+                @ready="onEditorReady($event)"
+                v-quill:myQuillEditor="editorOption">
           </div>
         </div>
     <input type="button" class="submit-button" value="提交" @click="submit" />

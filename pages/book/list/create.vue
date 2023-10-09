@@ -93,6 +93,11 @@ export default {
       console.log('editor change!', editor, html, text)
       this.content = html
     }
+  },
+  head() {
+    return {
+      title: '创建书单'
+    }
   }
 }
 </script>
