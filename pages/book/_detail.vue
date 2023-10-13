@@ -12,13 +12,13 @@
             <div class="leading-14">作者: <a href="" class="text-blue-500">{{ book.author }}</a></div>
             <div class="leading-14">评分: <span class="text-orange-500">{{ book.rating }}</span></div>
             <div class="leading-14">ISBN: {{ book.isbn || "暂无" }} </div>
-            <div class="leading-14 text-gray-600">{{ book.desc }}</div>
+            <div class="leading-14 text-gray-700">{{ book.desc }}</div>
             <div class="leading-14"><a :href="book.douban_url" target="_blank" class="text-blue-500">去豆瓣网查看更多图书详情»</a> </div>
           </div>
         </div>
       </div>
 
-      <!--读书笔记 -->
+      <!-- 读书笔记  -->
       <NoteList :bookId="bookId" :notes="quotes"/>
 
       <!-- 书评列表 -->

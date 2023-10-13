@@ -74,6 +74,9 @@ export default {
       this.$router.push({
         path:`/book/${item.id}`
       })
+    },
+    search() {
+
     }
   }
 }

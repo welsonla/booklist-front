@@ -17,7 +17,7 @@
               <a :href="`/user/`+note?.author_id" class="hover:bg-orange-300 text-blue-400">{{ note?.author?.name }}</a>
               评论 <a :href="`/book/`+note.book_id" class="hover:bg-orange-300 text-blue-400"> {{ note?.book?.name }}</a>
             </div>
-            <div class="text-gray-600 text-xs">
+            <div class="text-gray-600 text-sm">
               {{ note.content.substring(0,200) }}<a :href="`/book/review/`+note.id" class="text-blue-400">(查看原文)</a>
             </div>
           </div>
