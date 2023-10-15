@@ -23,17 +23,26 @@
   </div>
   <div class="flex flex-row">
     <!--  主页列表 -->
-    <div class="flex flex-col ml-8 flex-1">
+    <div class="flex flex-col ml-4" style="width:920px;">
       <!-- 读过的书 -->
       <div class="flex flex-col">
-        <div class="flex flex-row justify-between leading-12 border-b border-color pb-2">
-          <div class="text-lg nav-text-color ">书单(共0条)</div>
+        <div class="flex flex-row justify-between leading-12 border-b border-color pb-2 mb-2">
+          <div class="text-lg nav-text-color">书单(共{{collections.length}}条)</div>
           <div class="flex flex-row bg-green-200 text-green-600 text-sm px-4 rounded-md items-center note-write-button" @click="createList">
             <font-awesome-icon :icon="['fas', 'pen-to-square']"  class="text-green-600 h-3 w-3"/>&nbsp;创建书单
           </div>
         </div>
-        <template v-if="booklist.length > 0">
-          <div>书</div>
+        <template v-if="collections.length > 0">
+          <div class="flex flex-row gap-x-4 overflow-x-scroll">
+            <template v-for="collection in collections">
+              <div class="flex flex-col collect-item">
+                <img :src="cover_url(collection.cover_url)">
+                <div class="text-sm text-sky-600">
+                  {{ collection.name }}
+                </div>
+              </div>
+            </template>
+          </div>
         </template>
         <template v-else>
           <NoData :message="`还没有书单`"/>
@@ -72,7 +81,7 @@
     </div>
     <!-- End 主页列表 -->
     <!-- 左侧栏 -->
-    <div class="leftBar px-4 h-full">
+    <div class="side-bar px-4 h-full">
       <div class="flex flex-col">
         <div class="flex-col items-center content-center py-2 text-sm">
           <div class="">注册日期: {{ userInfo.created_at }}</div>
@@ -94,6 +103,7 @@ import Layout from "@/pages/layout";
 import * as api from '@/api';
 import NoteList from "@/components/Book/NoteList";
 import CommentList from "@/components/Book/CommentList";
+import {cover_url} from "@/tool";
 
 // import {mapGetters, mapMutations, mapState} from 'vuex';
 export default {
@@ -114,12 +124,21 @@ export default {
       console.log(`error:${error}`)
     })
   },
+  mounted() {
+    api.getFavoriteByUserId({}).then((resp) => {
+      if (resp.returncode === 1000 && resp.result.length > 0) {
+        this.collections = resp.result
+      }
+    }).catch((e) => {
+    })
+  },
   computed: {
     ...mapGetters({
       user:'user/user',
     })
   },
   methods: {
+    cover_url,
     fetchUser() {
       // this.$store.dispatch('user/login')
     },
@@ -135,7 +154,7 @@ export default {
         userInfo:{},
         notes:[],
         reviews:[],
-        booklist:[]
+        collections:[]
     }
   }
 }
@@ -145,5 +164,18 @@ export default {
 .leftBar{
   width: 250px;
   background-color: #F6F6F2;
+}
+
+.collect-item{
+  flex-shrink: 0;
+  width: 120px;
+  height: 200px;
+  overflow: hidden;
+  img {
+    width: 120px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
 }
 </style>

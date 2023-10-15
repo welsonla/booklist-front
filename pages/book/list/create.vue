@@ -74,9 +74,8 @@
 <script>
 import Layout from '@/pages/layout';
 import * as api from '@/api';
-import {cover_url, toast, showError} from "~/tool";
+import {cover_url, toast, showError, showSuccess} from "~/tool";
 import {createCollect} from "@/api";
-// import api from "js-cookie";
 export default {
   name: "create",
   components: {
@@ -126,10 +125,11 @@ export default {
       }
 
       api.createCollect(params).then((resp) => {
-        toast('书单创建成功', () => {
+        showSuccess('书单创建成功')
+        setTimeout(()=>{
           // 跳转到书单页面
           this.$router.replace({ path: `/book/list/${resp.result.id}` })
-        })
+        }, 2000)
       }).catch((e) => {
         showError('服务器繁忙，请稍候重试')
       })

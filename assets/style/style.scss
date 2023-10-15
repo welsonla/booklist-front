@@ -194,6 +194,8 @@ body {
 }
 
 .side-bar {
+  display: flex;
+  flex-direction: column;
   width: 300px;
   padding:0 20px;
   flex-shrink: 0;
