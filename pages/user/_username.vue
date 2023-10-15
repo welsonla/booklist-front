@@ -35,7 +35,7 @@
         <template v-if="collections.length > 0">
           <div class="flex flex-row gap-x-4 overflow-x-scroll">
             <template v-for="collection in collections">
-              <div class="flex flex-col collect-item">
+              <div class="flex flex-col collect-item" :key="'collect-'+collection.id">
                 <img :src="cover_url(collection.cover_url)">
                 <div class="text-sm text-sky-600">
                   {{ collection.name }}
@@ -166,16 +166,5 @@ export default {
   background-color: #F6F6F2;
 }
 
-.collect-item{
-  flex-shrink: 0;
-  width: 120px;
-  height: 200px;
-  overflow: hidden;
-  img {
-    width: 120px;
-    height: 150px;
-    object-fit: cover;
-    margin-bottom: 10px;
-  }
-}
+
 </style>

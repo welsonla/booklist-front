@@ -200,3 +200,18 @@ body {
   padding:0 20px;
   flex-shrink: 0;
 }
+
+.collect-item {
+  flex-shrink: 0;
+  width: 120px;
+  height: 220px;
+  overflow: hidden;
+}
+
+.collect-item img {
+  width: 120px;
+  height: 178px;
+  overflow: hidden;
+  object-fit: cover;
+  margin-bottom: 10px;
+}

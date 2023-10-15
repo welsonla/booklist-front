@@ -14,7 +14,7 @@
     </div>
     <!-- End 搜索框 -->
     <!-- 热门书单 -->
-    <Booklist />
+    <Booklist :collections="collections"/>
     <!-- End 热门书单 -->
 
 <!--    <Rank />-->
@@ -65,6 +65,7 @@ export default {
   },
   computed:{
     ...mapGetters({
+      collections:'home/collections',
       hotbooks:'home/hotbooks',
       notelist:'home/notelist',
       reviews: 'home/reviews',
