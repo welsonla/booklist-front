@@ -24,16 +24,12 @@ export function toast(message, callback) {
   Vue.toasted.info(message, options)
 }
 
-export function success(message, callback) {
+export function showSuccess(message) {
   let options = {
     position: 'top-center',
     duration: 2000,
     singleton: true,
-    theme: 'bubble',
-    onComplete:function () {
-      console.log('complete')
-      callback()
-    }
+    theme: 'bubble'
   }
   Vue.toasted.success(message, options)
 }
@@ -48,3 +44,50 @@ export function showError(message) {
   }
   Vue.toasted.error(message, options)
 }
+
+export function addFavorite(type, item_id, complete) {
+  let params = {
+    type:type,
+    item_id: item_id
+  }
+  api.addFavorite(params).then((resp) => {
+    console.log('addfavorite.success')
+    console.log(JSON.stringify(resp.result))
+    if (resp.returncode === 1000) {
+      complete(resp.result)
+    } else {
+      showError(resp.message)
+    }
+  }).catch((e) => {
+    showError('服务繁忙，请稍候重试11111')
+  })
+}
+
+export function delFavorite(type, item_id, complete) {
+  let params = {
+    type:type,
+    item_id: item_id
+  }
+  api.delFavorite(params).then((resp) => {
+    if (resp.returncode === 1000) {
+      complete()
+    } else {
+      showError(resp.message)
+    }
+  }).catch((e) => {
+    showError('服务繁忙，请稍候重试')
+  })
+}
+
+export function getFavorite(type, item_id, complete) {
+  let params = {
+    type:type,
+    item_id: item_id
+  }
+  api.getFavorite(params).then((resp) => {
+    complete(resp.result)
+  }).catch((e) => {
+    showError('服务繁忙，请稍候重试')
+  })
+}
+

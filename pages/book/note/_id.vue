@@ -17,13 +17,14 @@
       </div>
       <div class="mt-4 leading-12 text-sm text-gray-900" v-html="note.comment"></div>
       <hr class="mt-4"/>
+      <!-- 收藏 -->
       <div class="flex justify-end items-end content-end py-2">
        <div class="text-gray-400 text-sm mr-4">被3人收藏</div>
         <div class="bg-green-200 text-green-800 text-xs border-green-400 px-2 py-1 border rounded flex justify-center items-center">
           <font-awesome-icon :icon="['fas', 'bookmark']"  class="text-green-800 h-3 w-3"/>
           &nbsp;已收藏</div>
       </div>
-
+      <!-- End 收藏 -->
     </div>
     <!-- End 笔记标注 -->
   </Layout>

@@ -57,5 +57,14 @@ export const createCollect = (params = {}) => request(`post`, '/api/book/collect
 // 获取书单详情
 export const collectDetail = (params = {}) => request(`post`, `/api/collect/${params.id}`, params)
 
+// 添加收藏
+export const addFavorite = (params = {}) => request(`post`, `/api/favorite/add`, params)
+
+// 取消收藏
+export const delFavorite = (params = {}) => request(`post`, `/api/favorite/del`, params)
+
+// 检查收藏状态
+export const getFavorite = (params = {}) => request(`post`, `/api/favorite/get`, params)
+
 // 搜索
 export const search = (params = {}) => request(`post`, '/api/search', params)
