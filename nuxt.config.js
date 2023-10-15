@@ -30,7 +30,8 @@ export default {
   plugins: [
     '~/plugins/fontawesome.js',
     {src:'~/plugins/rating.js', ssr:false},
-    {src:'~/plugins/quill.js', ssr: false}
+    {src:'~/plugins/quill.js', ssr: false},
+    {src: '~/plugins/toast.js', ssr: false}
     // {src:'~/plugins/localStorage.js', ssr: false}
   ],
 

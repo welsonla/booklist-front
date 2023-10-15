@@ -51,5 +51,8 @@ export const createReview = (params = {}) => request(`post`,'/api/book/review/cr
 // 获取书评详情
 export const reviewDetail = (params = {}) => request(`post`, `/api/book/review/${params.id}`, params)
 
+// 创建书单
+export const createCollect = (params = {}) => request(`post`, '/api/book/collect/create', params)
+
 // 搜索
 export const search = (params = {}) => request(`post`, '/api/search', params)

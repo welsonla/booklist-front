@@ -23,7 +23,8 @@
     "vue-quill-editor": "^3.0.6",
     "vue-server-renderer": "^2.7.10",
     "vue-star-rating": "^1.7.0",
-    "vue-template-compiler": "^2.7.10"
+    "vue-template-compiler": "^2.7.10",
+    "vue-toasted": "^1.1.28"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^5.3.3",

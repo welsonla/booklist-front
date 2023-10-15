@@ -22,7 +22,7 @@
     <HotList :books="hotbooks"/>
 
     <!-- 最受欢迎的书评 -->
-    <NoteList :notes="reviews"/>
+    <ReviewList :notes="reviews"/>
     <!-- End 最受欢迎的书评 -->
 
     <!-- 图书分类 -->
@@ -42,7 +42,7 @@ import Booklist from "@/components/Booklist";
 import Category from '@/components/Category.vue';
 import Footer from "@/components/Footer";
 import Rank from "@/components/Rank";
-import NoteList from "@/components/NoteList";
+import ReviewList from "~/components/ReviewList.vue";
 import HotList from "@/components/HotList";
 import * as types from '@/store/types';
 import {patch} from "axios";
@@ -54,7 +54,7 @@ export default {
     Booklist,
     Category,
     Rank,
-    NoteList,
+    ReviewList,
     HotList,
     Footer
   },

@@ -11,7 +11,7 @@
           </div>
           <div class="flex flex-col flex-1 text-sm text-gray-500 ml-4">
             <div class="text-blue-900 text-sm note-title">
-              <a href="">{{ note.title }}</a>
+              <a :href="'/book/review/'+note.id">{{ note.title }}</a>
             </div>
             <div class="text-slate-400 text-sm leading-8">
               <a :href="`/user/`+note?.author_id" class="hover:bg-orange-300 text-blue-400">{{ note?.author?.name }}</a>
@@ -30,13 +30,18 @@
 <script>
 import * as Tool from '@/tool';
 export default {
-  name: "NoteList",
+  name: "ReviewList",
   props:{
     notes:Array
   },
   methods:{
     cover_url(path){
       return Tool.cover_url(path)
+    },
+    detail(item) {
+      this.$router.push({
+        path: ``
+      })
     }
   }
 }

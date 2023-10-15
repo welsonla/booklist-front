@@ -17,7 +17,7 @@ import Booklist from "@/components/Booklist";
 import Category from '../components/Category.vue';
 import Footer from "@/components/Footer";
 import Rank from "@/components/Rank";
-import NoteList from "@/components/NoteList";
+import ReviewList from "~/components/ReviewList.vue";
 import HotList from "@/components/HotList";
 export default {
   name: 'Layout',
@@ -26,7 +26,7 @@ export default {
     Booklist,
     Category,
     Rank,
-    NoteList,
+    ReviewList,
     HotList,
     Footer
   }
