@@ -54,5 +54,8 @@ export const reviewDetail = (params = {}) => request(`post`, `/api/book/review/$
 // 创建书单
 export const createCollect = (params = {}) => request(`post`, '/api/book/collect/create', params)
 
+// 获取书单详情
+export const collectDetail = (params = {}) => request(`post`, `/api/collect/${params.id}`, params)
+
 // 搜索
 export const search = (params = {}) => request(`post`, '/api/search', params)

@@ -105,7 +105,6 @@ export default {
   methods:{
     cover_url,
     submit() {
-      console.log("submit")
       if (this.title.length === 0) {
         showError('标题不能为空')
         return
@@ -125,10 +124,11 @@ export default {
         "name":this.title,
         "content":this.content
       }
+
       api.createCollect(params).then((resp) => {
-        console.log(JSON.stringify(resp))
-        toast('书单创建成功', function () {
-          this.$router.replace({ path: `/collect/${resp.result.id}` })
+        toast('书单创建成功', () => {
+          // 跳转到书单页面
+          this.$router.replace({ path: `/book/list/${resp.result.id}` })
         })
       }).catch((e) => {
         showError('服务器繁忙，请稍候重试')

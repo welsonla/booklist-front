@@ -12,13 +12,12 @@ export function cover_url(url) {
 export function toast(message, callback) {
   let options = {
     position: 'top-center',
-    duration: 10000,
+    duration: 2000,
     singleton: true,
     theme: 'bubble',
     className:'bubble-default',
     containerClass: 'bubble-container',
     onComplete:function () {
-      console.log('complete')
       callback()
     }
   }
