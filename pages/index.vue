@@ -86,6 +86,11 @@ export default {
           path: path
       })
     }
+  },
+  head() {
+    return {
+      title: '时光书单'
+    }
   }
 }
 </script>

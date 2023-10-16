@@ -3,10 +3,11 @@
   <div class="text-xl section-title">热门书单</div>
   <div class="flex-col">
     <div class="">
-      <div class="flex flex-row overflow-x-scroll">
+      <div class="flex flex-row justify-between">
         <template v-for="collect in collections">
           <div class="flex flex-col mr-6 collect-item" :key="'collection-'+collect.id">
             <img :src="cover_url(collect.cover_url)" class="w-32 book-item-cover"/>
+            <div class="text-sky-700 text-sm text-nowrap"> {{ collect.name }}</div>
             <div class="bg-gray-300 text-gray-500 text-sm radius- text-center p-1 mt-3">
               查看书单· 7本书
             </div>

@@ -58,6 +58,7 @@ export default {
       console.log(JSON.stringify(resp))
       if (resp.returncode === 1000) {
         this.review = resp.result
+        this.title= this.review.title
       }
     }).catch((e)=>{
       console.log(`review.detail.error:${e}`)
@@ -65,12 +66,13 @@ export default {
   },
   data() {
     return {
-      review:undefined
+      review:undefined,
+      title: '书评'
     }
   },
   head() {
     return {
-      title: '书评'
+      title: this.title
     }
   }
 }

@@ -76,7 +76,11 @@ export default {
       })
     },
     search() {
-
+    }
+  },
+  head() {
+    return {
+      title: `搜索：'${this.keyword}'`
     }
   }
 }
