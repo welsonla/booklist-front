@@ -5,6 +5,7 @@
     <div class="">
       <div class="flex flex-row justify-between">
         <template v-for="collect in collections">
+          <nuxt-link :to="'/book/list/'+collect.id">
           <div class="flex flex-col mr-6 collect-item" :key="'collection-'+collect.id">
             <img :src="cover_url(collect.cover_url)" class="w-32 book-item-cover"/>
             <div class="text-sky-700 text-sm text-nowrap"> {{ collect.name }}</div>
@@ -12,6 +13,7 @@
               查看书单· 7本书
             </div>
           </div>
+          </nuxt-link>
         </template>
       </div>
     </div>

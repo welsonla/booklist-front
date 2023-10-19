@@ -32,8 +32,9 @@
       <!-- 书单内包含的图书 -->
       <div class="">
         <template v-for="book in collect.books">
+          <nuxt-link :to="'/book/'+book.id">
           <div class="flex flex-row">
-            <div class="flex flex-row py-4 box-border pr-3 cursor-pointer" :key="`book-`+book.id" @click="showBook(book.id)">
+            <div class="flex flex-row py-4 box-border pr-3 cursor-pointer" :key="`book-`+book.id">
               <div class="text-sm font-semibold text-gray-800">
                 <img :src="cover_url(book.image_url)" class="note-item-cover"/>
               </div>
@@ -47,6 +48,7 @@
               </div>
             </div>
           </div>
+          </nuxt-link>
         </template>
       </div>
       <!-- End 书单内包含的图书 -->
