@@ -7,7 +7,7 @@
     <div class="flex flex-col ml-2">
       <div class="flex text-xl font-medium flex-row items-center">
         {{ userInfo.name }} 的读书主页
-        <tepmate v-if="userInfo.id !== user.id">
+        <tepmate v-if="user && userInfo.id !== user.id">
           <button class="bg-amber-100 w-20 text-sm rounded border border-amber-400 ml-2">关注</button>
         </tepmate>
       </div>
@@ -152,14 +152,15 @@ export default {
     },
     logout() {
       if (confirm('是否退出登录')) {
-        Cookie.remove('token', {path: '/'})
-        Cookie.remove('user', {path: '/'})
         showSuccess('退出成功')
-        setTimeout(() => {
+        this.$store.dispatch('user/logout').then((resp) => {
           this.$router.push({
             path: '/'
           })
-        }, 2000)
+        })
+        // setTimeout(() => {
+        //
+        // }, 2000)
       }
 
     }

@@ -5,7 +5,7 @@
     </div>
     <div class="user-info flex flex-row justify-between">
 
-      <template v-if="user !== undefined">
+      <template v-if="user">
         <div><a :href="`/user/`+user.id">{{ user.name }}的主页</a></div>
       </template>
       <template v-else>

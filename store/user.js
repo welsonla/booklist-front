@@ -38,6 +38,13 @@ const actions = {
   },
   updateUser({commit, state}, user) {
     commit(types.USER, user)
+  },
+  logout({commit, state}, params = {}) {
+    Cookie.remove('token', {path: '/'})
+    Cookie.remove('user', {path: '/'})
+    commit(types.SIGN, null)
+    commit(types.USER, null)
+    return Promise.resolve()
   }
 }
 
