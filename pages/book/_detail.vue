@@ -8,15 +8,23 @@
           <div class="text-sm font-semibold text-gray-800">
             <img :src="cover_url(book.image_url)" class="note-item-cover"/>
           </div>
-          <div class="flex flex-col flex-1 text-sm text-gray-500 ml-4">
-            <div class="leading-14">作者: <a href="" class="text-blue-500">{{ book.author }}</a></div>
+          <div class="flex flex-col flex-1 text-sm text-gray-500 ml-4 gap-y-1">
+            <div class="leading-14">作者: <a href="" class="text-sky-700">{{ book.author }}</a></div>
             <div class="leading-14">评分: <span class="text-orange-500">{{ book.rating }}</span></div>
             <div class="leading-14">ISBN: {{ book.isbn || "暂无" }} </div>
             <div class="leading-14 text-gray-700">{{ book.desc }}</div>
-            <div class="leading-14"><a :href="book.douban_url" target="_blank" class="text-blue-500">去豆瓣网查看更多图书详情»</a> </div>
+            <div class="leading-14 flex justify-between">
+              <a :href="book.douban_url" target="_blank" class="text-sky-700">去豆瓣网查看更多图书详情»</a>
+
+              <div class="text-sky-700 text-sm">
+                <span class="underline cursor-pointer" @click="toggleLike">
+                  <template v-if="favorite">已收藏</template><template v-else>添加收藏</template></span>({{ book.like_count }}人收藏)
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
 
       <!-- 读书笔记  -->
       <NoteList :bookId="bookId" :notes="quotes"/>
@@ -32,6 +40,7 @@ import * as api from '@/api';
 import NoteList from '@/components/Book/NoteList';
 import CommentList from "@/components/Book/CommentList";
 import * as Tool from "@/tool";
+import {addFavorite, delFavorite, getFavorite, showSuccess} from "@/tool";
 
 export default {
   name: "BookDetail",
@@ -46,7 +55,8 @@ export default {
       bookId:this.$route.params.detail,
       quotes:[],
       reviews:[],
-      title:''
+      title:'',
+      favorite:null
     }
   },
   computed:{
@@ -59,6 +69,25 @@ export default {
   methods:{
     cover_url(url) {
       return Tool.cover_url(url)
+    },
+    toggleLike() {
+      if(this.favorite === null) {
+        // 添加收藏
+        addFavorite(api.fav_book, this.bookId, (resp) => {
+          this.favorite = resp
+          this.book.like_count += 1
+          console.log('收藏成功')
+          showSuccess('收藏成功')
+        })
+      } else {
+        // 取消收藏
+        delFavorite(api.fav_book, this.bookId, () => {
+          this.favorite = null
+          this.book.like_count -= 1
+          console.log('收藏失败')
+          showSuccess('已取消收藏')
+        })
+      }
     }
   },
   mounted() {
@@ -74,6 +103,10 @@ export default {
       }
     }).catch((e) => {
       console.log(e)
+    })
+
+    getFavorite(api.fav_book, this.bookId, (resp) => {
+      this.favorite = resp
     })
   },
   head() {

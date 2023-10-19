@@ -14,9 +14,14 @@
               <span class="text-blue-500 text-sm hover:bg-amber-100">{{ review.author.name }}</span>
               <span class="text-gray-400 text-sm">{{ review.created_at }}</span>
             </div>
-            <div class="bg-gray-200 py-2 text-sm pl-2 text-gray-600">{{ review.title }}</div>
-            <div class="text-sm text-gray-600 mt-2 leading-5">
-              {{ review.content.substring(0,400) }}<a :href="`/book/review/`+review.id" class="text-blue-400">(查看原文)</a>
+            <div class="bg-gray-200 py-2 text-sm pl-2 text-gray-600"><nuxt-link :to="'/book/review/'+review.id">{{ review.title }}</nuxt-link></div>
+            <div class="text-sm text-gray-600 mt-2 leading-6">
+              <template v-if="review.content.length > 400">
+                {{ review.content.substring(0,400) }}<a :href="`/book/review/`+review.id" class="text-blue-400">(查看原文)</a>
+              </template>
+              <template v-else>
+                {{ review.content }}
+              </template>
             </div>
           </div>
         </template>
