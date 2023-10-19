@@ -24,7 +24,7 @@ const actions = {
         Cookie.set('user', JSON.stringify(result.user))
         return Promise.resolve(result)
       } else {
-        return Promise.reject(resp);
+        return Promise.reject(res);
       }
     }).catch((e) => {
       return Promise.reject({

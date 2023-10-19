@@ -59,7 +59,7 @@
 import Layout from "@/pages/layout";
 import * as api from '@/api';
 import { mapActions } from 'vuex';
-//https://juejin.cn/post/6911577905441013773
+import {showError, showSuccess} from "@/tool";
 export default {
   name: "login",
   components: {Layout},
@@ -75,25 +75,26 @@ export default {
         password: this.loginPass
       }
       this.$store.dispatch('user/login', params).then((resp) => {
+        showSuccess('登录成功')
           this.$router.push({
             path: "/"
           })
-      }).catch((e) => {
-
+      }).catch((resp) => {
+          showError(resp.message)
       })
     },
     register() {
       if (this.regName.length == 0) {
-        alert('请输入用户名')
+        showError('请输入用户名')
         return
       }
 
       if (this.regEmail.length == 0) {
-        alert('请输入注册邮箱')
+        showError('请输入注册邮箱')
         return;
       }
       if (this.regPass !== this.regPassConfirm) {
-        alert('两次密码不匹配')
+        showError('两次密码不匹配')
         return
       }
       let params = {
@@ -102,9 +103,16 @@ export default {
         password:this.regPass
       }
       api.register(params).then((resp) => {
-
+        if(resp.returncode === 1000) {
+          showSuccess(resp.message)
+          setTimeout(() => {
+            this.selectIndex = 0
+          }, 2000)
+        } else {
+          showError(resp.message)
+        }
       }).catch((e) => {
-
+          showError('服务繁忙，请稍候重试')
       })
     }
   },

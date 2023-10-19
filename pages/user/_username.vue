@@ -88,6 +88,9 @@
           <div class="text-gray-700 text-sm leading-6">
             {{ userInfo.bio }}
           </div>
+          <div class="flex flex-row">
+            <a @click="logout" class="text-sky-600 underline">退出登录</a>
+          </div>
         </div>
       </div>
     </div>
@@ -103,8 +106,8 @@ import Layout from "@/pages/layout";
 import * as api from '@/api';
 import NoteList from "@/components/Book/NoteList";
 import CommentList from "@/components/Book/CommentList";
-import {cover_url} from "@/tool";
-
+import {cover_url, showSuccess} from "@/tool";
+import Cookie from "js-cookie";
 // import {mapGetters, mapMutations, mapState} from 'vuex';
 export default {
   name: "user",
@@ -146,6 +149,19 @@ export default {
       this.$router.push({
         path:'/book/list/create'
       })
+    },
+    logout() {
+      if (confirm('是否退出登录')) {
+        Cookie.remove('token', {path: '/'})
+        Cookie.remove('user', {path: '/'})
+        showSuccess('退出成功')
+        setTimeout(() => {
+          this.$router.push({
+            path: '/'
+          })
+        }, 2000)
+      }
+
     }
   },
   data() {
