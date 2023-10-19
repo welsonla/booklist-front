@@ -48,6 +48,7 @@
 <script>
 import Layout from "@/pages/layout";
 import * as api from "@/api";
+import {showError, showSuccess} from "~/tool";
 export default {
   name: "create",
   components: {
@@ -65,11 +66,13 @@ export default {
         console.log(`create.review.success:${JSON.stringify(resp)}`)
         if(resp.returncode === 1000) {
           let itemId = resp.result.id
+          showSuccess('书评发表成功')
           this.$router.push({
             path:`/book/review/${itemId}`
           })
         }
       }).catch((e) => {
+        showError('发生错误，请稍候重试')
         console.log(`create.review.error:${e}`)
       })
     },

@@ -11,6 +11,7 @@
     <template v-if="notes.length > 0">
       <template v-for="note in notes">
         <!-- 笔记标注 -->
+        <nuxt-link :to="'/book/note/'+note.id">
         <div class="py-4 text-sm">
           <div class="text-gray-800 mt-2 note-quote leading-5">
             {{ note.content }}
@@ -21,6 +22,7 @@
             <span class="text-gray-400">{{ note.chapter }}　<span v-show="note.page > 0">{{ note.page }}</span></span>
           </div>
         </div>
+        </nuxt-link>
         <!-- End 笔记标注 -->
       </template>
     </template>

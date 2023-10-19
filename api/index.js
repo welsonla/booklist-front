@@ -25,6 +25,13 @@ function request(method, route, obj, domain = '') {
   });
 }
 
+export const fav_book = 1
+export const fav_collect = 2
+export const fav_review = 3
+export const fav_quote = 4
+
+
+
 // 登录
 export const login = (params = {}) => request(`post`, '/api/login', params)
 

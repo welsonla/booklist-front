@@ -42,7 +42,7 @@ export default {
   methods:{
     writeComment() {
       this.$router.push({
-        path: '/book/note/create',
+        path: '/book/review/create',
         query:{
           bookid:this.bookId
         }

@@ -65,7 +65,6 @@
             <font-awesome-icon :icon="['far','bookmark']"  class="text-green-800 h-3 w-3"/>
             &nbsp; 收藏
           </template>
-
         </div>
       </div>
       <!-- End 收藏 -->
@@ -138,7 +137,7 @@ export default {
   },
   mounted() {
     console.log(`collectId:${this.collectId}`)
-    getFavorite(2, this.collectId, (resp) => {
+    getFavorite(api.fav_collect, this.collectId, (resp) => {
       this.favorite = resp
     })
   },
