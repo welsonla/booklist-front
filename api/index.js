@@ -50,6 +50,9 @@ export const createNote = (params = {}) => request(`post`, '/api/book/quote/crea
 // 创建微信摘抄
 export const importWechat = (params = {}) => request(`post`, '/api/book/note/wechat/import', params)
 
+// 某用户的某本书的所有笔记
+export const notelist = (params = {}) => request(`post`, `/api/book/note/list`, params)
+
 // 摘抄详情
 export const note = (params = {}) => request(`post`, `/api/book/quote/${params.id}`, params)
 
