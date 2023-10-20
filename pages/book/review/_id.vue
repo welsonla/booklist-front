@@ -98,7 +98,6 @@ export default {
         addFavorite(api.fav_review, this.reviewId, (resp) => {
           this.favorite = resp
           this.review.like_count += 1
-          console.log('收藏成功')
           showSuccess('收藏成功')
         })
       } else {
@@ -106,7 +105,6 @@ export default {
         delFavorite(api.fav_review, this.reviewId, () => {
           this.favorite = null
           this.review.like_count -= 1
-          console.log('收藏失败')
           showSuccess('已取消收藏')
         })
       }

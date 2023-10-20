@@ -1,6 +1,6 @@
 <template>
   <div class="flex-col mt-6">
-    <div class="text-xl section-title">最受欢迎的书评</div>
+    <div class="text-xl section-title">{{title||"最受欢迎的书评"}}</div>
     <div class="flex flex-col">
       <template v-for="note in notes">
         <div class="flex flex-row py-4 border-b border-gray-200" :key="`note-`+note.id">
@@ -17,7 +17,7 @@
               <a :href="`/user/`+note?.author_id" class="hover:bg-orange-300 text-blue-400">{{ note?.author?.name }}</a>
               评论 <a :href="`/book/`+note.book_id" class="hover:bg-orange-300 text-blue-400"> {{ note?.book?.name }}</a>
             </div>
-            <div class="text-gray-600 text-sm">
+            <div class="text-gray-600 text-sm" v-if="note.content">
               {{ note.content.substring(0,200) }}<a :href="`/book/review/`+note.id" class="text-blue-400">(查看原文)</a>
             </div>
           </div>
@@ -32,7 +32,8 @@ import * as Tool from '@/tool';
 export default {
   name: "ReviewList",
   props:{
-    notes:Array
+    notes:Array,
+    title:String
   },
   methods:{
     cover_url(path){

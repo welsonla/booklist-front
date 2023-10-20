@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-col mt-4">
+  <div class="flex flex-col" :class="bookId ? 'mt-4' : ''">
     <!--顶部导航 -->
-    <div class="flex flex-row justify-between leading-12 border-b border-color pb-2">
+    <div class="flex flex-row justify-between leading-12 border-b border-color pb-2" v-show="bookId">
       <div class="text-lg nav-text-color ">笔记与摘录(共{{ total || notes.length}}条)</div>
       <div class="flex flex-row bg-green-200 text-green-600 text-sm px-4 rounded-md items-center note-write-button" @click="writeComment">
         <font-awesome-icon :icon="['fas', 'pen-to-square']"  class="text-green-600 h-3 w-3"/>&nbsp;写笔记
@@ -22,9 +22,9 @@
           <nuxt-link :to="'/book/note/'+note.id">
             <div class="leading-12 note-quote-author flex">
               <div class="">
-                <span class="text-blue-500">{{ note.user.name  }}</span>
-                <span class="text-gray-400">{{ note.created_at }}</span>
-                <span class="text-gray-400">《{{ note.chapter }}》　<span v-show="note.page > 0">{{ note.page }}</span></span>
+<!--                <span class="text-blue-500">{{ note?.user?.name || note?.author.name }}</span>-->
+                <span class="text-gray-400">{{ note?.created_at }}</span>
+                <span class="text-gray-400"><span v-show="note.chapter">《{{ note.chapter }}》</span>　<span v-show="note.page > 0">{{ note.page }}</span></span>
               </div>
               <div class="flex flex-row content-center items-center text-gray-400">
                 <template v-if="note.source === 1">
@@ -77,7 +77,7 @@ export default {
     }
   },
   mounted() {
-    console.log(`${this.user.id}`)
+    // console.log(`${this.user.id}`)
   }
 }
 </script>

@@ -7,16 +7,17 @@
     <div class="flex flex-col ml-2">
       <div class="flex text-xl font-medium flex-row items-center">
         {{ userInfo.name }} 的读书主页
-        <tepmate v-if="user && userInfo.id !== user.id">
+        <template v-if="user && userInfo.id !== user.id">
           <button class="bg-amber-100 w-20 text-sm rounded border border-amber-400 ml-2">关注</button>
-        </tepmate>
+        </template>
       </div>
       <div class="text-sm">
         <ul class="flex items-center gap-x-8">
           <li><a :href="`/user/`+userInfo.id" class="hover:bg-orange-300 hover:text-white">主页</a></li>
           <li><a :href="`/user/notes/`+userInfo.id" class="hover:bg-orange-300 hover:text-white">笔记</a></li>
-          <li><a :href="`/user/reviews`+userInfo.id" class="hover:bg-orange-300 hover:text-white">书评</a></li>
-          <li><a :href="`/user/booklist`+userInfo.id" class="hover:bg-orange-300 hover:text-white">书单</a></li>
+          <li><a :href="`/user/reviews/`+userInfo.id" class="hover:bg-orange-300 hover:text-white">书评</a></li>
+          <li><a :href="`/user/booklist/`+userInfo.id" class="hover:bg-orange-300 hover:text-white">书单</a></li>
+          <li><a :href="`/user/favorite/`+userInfo.id" class="hover:bg-orange-300 hover:text-white">收藏({{ favorite_count }})</a></li>
         </ul>
       </div>
     </div>
@@ -51,7 +52,7 @@
       <!-- End 读过的书  -->
       <!-- 笔记列表 -->
       <div class="flex flex-col">
-        <template v-if="reviews.length > 0">
+        <template v-if="notes.length > 0">
           <!--读书笔记 -->
           <NoteList bookId="0" :notes="notes"/>
         </template>
@@ -123,6 +124,7 @@ export default {
       this.userInfo = resp.result
       this.notes = resp.result.notes || []
       this.reviews = resp.result.reviews || []
+      this.favorite_count = resp.result.favorite_count
     }).catch((error) => {
       console.log(`error:${error}`)
     })
@@ -158,11 +160,7 @@ export default {
             path: '/'
           })
         })
-        // setTimeout(() => {
-        //
-        // }, 2000)
       }
-
     }
   },
   data() {
@@ -171,7 +169,8 @@ export default {
         userInfo:{},
         notes:[],
         reviews:[],
-        collections:[]
+        collections:[],
+        favorite_count: 0
     }
   }
 }

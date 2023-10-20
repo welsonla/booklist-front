@@ -92,7 +92,6 @@ export default {
         addFavorite(api.fav_book, this.bookId, (resp) => {
           this.favorite = resp
           this.book.like_count += 1
-          console.log('收藏成功')
           showSuccess('收藏成功')
         })
       } else {
@@ -100,15 +99,12 @@ export default {
         delFavorite(api.fav_book, this.bookId, () => {
           this.favorite = null
           this.book.like_count -= 1
-          console.log('收藏失败')
           showSuccess('已取消收藏')
         })
       }
     }
   },
   mounted() {
-
-
     getFavorite(api.fav_book, this.bookId, (resp) => {
       this.favorite = resp
     })

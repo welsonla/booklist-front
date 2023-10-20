@@ -79,6 +79,8 @@ export const delFavorite = (params = {}) => request(`post`, `/api/favorite/del`,
 // 检查收藏状态
 export const getFavorite = (params = {}) => request(`post`, `/api/favorite/get`, params)
 
+export const getFavoriteList = (params = {}) => request(`post`, `/api/favorite/list`, params)
+
 export const getFavoriteByUserId = (params = {}) => request(`post`, `/api/collect/getList`, params)
 
 // 搜索
