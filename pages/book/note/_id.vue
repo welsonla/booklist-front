@@ -6,16 +6,23 @@
       <div class="flex flex-row py-2">
         <img src="~/assets/images/avatar.png" class="w-10 h-10"/>
         <div class="flex flex-col text-sm ml-2 text-gray-400 justify-between">
-          <p><a :href="'/user/'+note.user_id" class="text-sky-700">{{ note.user.name }}</a></p>
+          <p><a :href="'/user/'+note.user_id" class="text-sky-700">{{ note.author.name }}</a></p>
           <p>摘抄于:<a :href="'/book/'+note.book_id" class="text-sky-700">{{ note.book.name }}</a></p>
         </div>
-      </div>
-      <div class="leading-12 bg-gray-100 border-gray-200 border text-gray-800 pl-4 mb-2 py-1">
-        <span class="text-gray-700 text-sm"><span v-if="note.page">引自第{{ note.page }}页 发表于</span>{{note.created_at}}</span>
       </div>
       <div class="text-sm text-gray-600 mt-2 border-l-gray-300 border-l-4 pl-4 whitespace-pre-line" v-html="note.content">
       </div>
       <div class="mt-4 leading-12 text-sm text-gray-900" v-html="note.comment"></div>
+      <div class="leading-12  text-sm text-gray-500 pl-4 mb-2 mt-4 py-1 text-right flex flex-row items-center justify-end">
+        <span class=" text-right">----------------- <span v-if="note.page">引自第{{ note.page }}页 发表于</span>{{note.created_at}}</span>
+        &nbsp;&nbsp;
+          <template v-if="note.source === 1">
+            来自微信读书&nbsp;<font-awesome-icon :icon="['fab', 'weixin']"  class="text-green-700 h-3 w-3"/>
+          </template>
+          <template v-else-if="note.source === 2">
+            来自Kindle&nbsp;<font-awesome-icon :icon="['fab', 'amazon']" class="text-gray-700 h-4 w-4"/>
+          </template>
+      </div>
       <hr class="mt-4"/>
       <!-- 收藏 -->
       <div class="flex justify-end items-end content-end py-2 border-t-gray-300 border-t-0 mb-4">

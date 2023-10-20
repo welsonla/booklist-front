@@ -4,11 +4,11 @@
 <!--  {{ user.name }}-->
   <div class="flex flex-row py-4 px-4 mb-4">
     <img src="~/assets/images/avatar.png" class="w-12 h-12"/>
-    <div class="flex flex-col ml-2">
-      <div class="flex text-xl font-medium flex-row items-center">
+    <div class="flex flex-col ml-2 justify-between">
+      <div class="flex text-xl text-sky-600 flex-row items-center">
         {{ userInfo.name }} 的读书主页
         <template v-if="user && userInfo.id !== user.id">
-          <button class="bg-amber-100 w-20 text-sm rounded border border-amber-400 ml-2">关注</button>
+<!--          <button class="bg-amber-100 w-20 text-sm rounded border border-amber-400 ml-2">关注</button>-->
         </template>
       </div>
       <div class="text-sm">
@@ -34,7 +34,7 @@
           </div>
         </div>
         <template v-if="collections.length > 0">
-          <div class="flex flex-row gap-x-4 overflow-x-scroll">
+          <div class="flex flex-row gap-x-4 overflow-x-auto">
             <template v-for="collection in collections">
               <div class="flex flex-col collect-item" :key="'collect-'+collection.id">
                 <img :src="cover_url(collection.cover_url)">
@@ -58,9 +58,9 @@
         </template>
         <template v-else>
           <div class="flex flex-row justify-between leading-12 border-b border-color pb-2">
-            <div class="text-lg nav-text-color">我的笔记(共0条)</div>
+            <div class="text-lg nav-text-color">我的笔记</div>
           </div>
-          <NoData :message="`还没有读过的书`"/>
+          <NoData :message="`还没有记录过笔记`"/>
         </template>
       </div>
       <!-- End 笔记列表 -->
@@ -75,7 +75,7 @@
           <div class="flex flex-row justify-between leading-12 border-b border-color pb-2">
             <div class="text-lg nav-text-color">我的书评</div>
           </div>
-          <NoData :message="`还没有读过的书`"/>
+          <NoData :message="`还没有发布过书评`"/>
         </template>
       </div>
       <!-- End 书评列表 -->
@@ -125,6 +125,7 @@ export default {
       this.notes = resp.result.notes || []
       this.reviews = resp.result.reviews || []
       this.favorite_count = resp.result.favorite_count
+      this.collections = resp.result.collects
     }).catch((error) => {
       console.log(`error:${error}`)
     })
@@ -132,7 +133,7 @@ export default {
   mounted() {
     api.getFavoriteByUserId({}).then((resp) => {
       if (resp.returncode === 1000 && resp.result.length > 0) {
-        this.collections = resp.result
+        // this.collections = resp.result
       }
     }).catch((e) => {
     })

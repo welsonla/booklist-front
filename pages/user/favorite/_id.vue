@@ -14,22 +14,22 @@
             <template v-if="c.type===1">
               <li><span class="hover:bg-orange-300 hover:text-white cursor-pointer"
                         :class="c.type === type_id ? 'bg-orange-400 text-white':''"
-                        @click="fetchData(1)">图书 · {{ c.count}}</span></li>
+                        @click="fetchData(1)">&nbsp;图书 · {{ c.count}}&nbsp;</span></li>
             </template>
             <template v-if="c.type===2">
               <li><span class="hover:bg-orange-300 hover:text-white cursor-pointer"
                         :class="c.type === type_id ? 'bg-orange-400 text-white':''"
-                        @click="fetchData(2)">书单 · {{ c.count}}</span></li>
+                        @click="fetchData(2)">&nbsp;书单 · {{ c.count}}&nbsp;</span></li>
             </template>
             <template v-if="c.type===3">
               <li><span class="hover:bg-orange-300 hover:text-white cursor-pointer"
                         :class="c.type === type_id ? 'bg-orange-400 text-white':''"
-                        @click="fetchData(3)">书评 · {{ c.count}} </span></li>
+                        @click="fetchData(3)">&nbsp;书评 · {{ c.count}}&nbsp; </span></li>
             </template>
             <template v-if="c.type===4">
               <li><span class="hover:bg-orange-300 hover:text-white"
                         :class="c.type === type_id ? 'bg-orange-400 text-white':''"
-                        @click="fetchData(4)">笔记 · {{ c.count}}</span></li>
+                        @click="fetchData(4)">&nbsp;笔记 · {{ c.count}}&nbsp;</span></li>
             </template>
           </template>
         </ul>
@@ -85,7 +85,7 @@ import BookItem from "~/components/Favorite/BookItem.vue";
 
 export default {
   components: {
-      BookItem,
+    BookItem,
     NoteList,
     CommentList,
     CollectDetail,
