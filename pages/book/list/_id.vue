@@ -7,7 +7,7 @@
       <!-- 作者与图书信息 -->
       <div class="flex flex-row items-center box-border mt-2 mb-2">
         <!-- 头像 -->
-        <div class="flex w-8 h-8 flex flex-col items-center">
+        <div class="flex w-8 h-8 flex-col items-center">
           <a :href="`/user/`+collect.author_id">
             <img src="~/assets/images/avatar.png"/>
           </a>
@@ -17,7 +17,7 @@
         <div class="text-xs flex flex-col justify-between ml-2">
           <!-- 作者发表 -->
           <div class="text-gray-400 text-sm" v-if="collect.author">
-            来自&nbsp;<a :href="`/user/`+collect.author_id" class="text-blue-400 hover:bg-amber-100">{{ collect.author.name  }}</a>
+            来自&nbsp;<a :href="`/user/`+collect.author_id" class="text-sky-700 hover:bg-amber-100">{{ collect.author.name  }}</a>
             &nbsp;创建于 {{ collect.created_at }}
           </div>
           <!-- End 作者发表 -->
@@ -72,7 +72,7 @@
     <!-- End 书单详情 -->
     <!-- 侧边栏 -->
     <div class="side-bar">
-      <div class="text-green-700 mb-2">
+      <div class="nav-text-color mb-2">
         什么是书单  · · · · · ·
       </div>
       <div class="text-gray-500 text-sm leading-6">

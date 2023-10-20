@@ -9,6 +9,21 @@ export function cover_url(url) {
   return `${api.host}/${url}`
 }
 
+export function showLoading(message) {
+  let options = {
+    position: 'top-center',
+    singleton: true,
+    theme: 'bubble',
+    className:'bubble-default',
+    containerClass: 'bubble-container'
+  }
+  Vue.toasted.info(message, options)
+}
+
+export function stopLoading() {
+  Vue.toasted.clear()
+}
+
 export function toast(message, callback) {
   let options = {
     position: 'top-center',

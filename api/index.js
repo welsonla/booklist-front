@@ -47,6 +47,9 @@ export const book = (params = {}) =>request(`post`, `/api/book/${params.id}`, pa
 // 创建摘抄
 export const createNote = (params = {}) => request(`post`, '/api/book/quote/create', params)
 
+// 创建微信摘抄
+export const importWechat = (params = {}) => request(`post`, '/api/book/note/wechat/import', params)
+
 // 摘抄详情
 export const note = (params = {}) => request(`post`, `/api/book/quote/${params.id}`, params)
 

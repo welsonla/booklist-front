@@ -16,7 +16,10 @@
         <div for="comment">粘贴微信读书笔记内容</div>
       <a href="" class="text-sky-600">(如何导出微信读书笔记?)</a>
       </div>
-      <textarea placeholder="请将微信导出的笔记粘贴到此处" rows="10" class="border-gray-200 border rounded overflow-hidden p-2"></textarea>
+      <textarea placeholder="请将微信导出的笔记粘贴到此处"
+                rows="10"
+                v-model="content"
+                class="border-gray-200 border rounded overflow-y-scroll p-2"></textarea>
       <div class="text-gray-500 mt-2 text-rose-700">复制笔记后不要修改笔记任何内容，以免造成笔记解析失败</div>
 <!--      <div class="editor-container">-->
 
@@ -39,13 +42,21 @@
 <script>
 import Layout from "@/pages/layout";
 import * as api from "@/api";
+import {showError, showLoading, showSuccess, stopLoading} from "~/tool";
+import {mapGetters} from "vuex";
 export default {
   name: "wechat",
   components: {Layout},
+  computed: {
+    ...mapGetters({
+      user:'user/user',
+    })
+  },
   data() {
     return {
       bookid: this.$route.query.bookid,
       book:undefined,
+      content:null,
       editorOption: {
         // some quill options
         modules: {
@@ -76,19 +87,21 @@ export default {
     submit() {
       let params = {
         bookid: this.bookid,
-        chapter: this.chapter,
-        content: this.quote,
-        comment: this.comment,
-        page: this.page
+        content: this.content
       }
-      api.createNote(params).then((resp) => {
+      showLoading('处理中，请耐心等待...')
+      api.importWechat(params).then((resp) => {
+        stopLoading()
+        showSuccess('导入成功')
         console.log(`create.quote.success:${resp}`)
         if (resp.returncode === 1000) {
           this.$router.push({
-            path: `/book/note/${resp.result.id}`
+            path: `/book/note/list?bookid=${this.bookid}&userid=${this.user.id}`
           })
         }
       }).catch((e) => {
+        stopLoading()
+        showError('导入失败')
         console.log(`create.quote.error:${e}`)
       })
     },
@@ -104,6 +117,11 @@ export default {
     onEditorChange({ editor, html, text }) {
       console.log('editor change!', editor, html, text)
       this.comment = html
+    }
+  },
+  head() {
+    return {
+      title: '导入微信笔记'
     }
   }
 }
