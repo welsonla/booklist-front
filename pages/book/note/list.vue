@@ -22,7 +22,7 @@
     </div>
   </div>
   <!-- End 作者与图书信息 -->
-<div class="flex flex-col">
+<div class="flex flex-col" v-if="book">
   <!-- 图书信息 -->
   <nuxt-link :to="'/book/'+book.id">
   <div class="book-info flex flex-row mt-4" v-if="book">
@@ -37,6 +37,7 @@
   <NoteList
     :notes="listArray" :bookId="bookId"
     :total="total_items"
+    :userid="parseInt(userId)"
   />
   <div class="flex gap-x-2 text-sky-600 text-sm py-2 items-center content-center justify-center">
     <a href="">&lt;首页</a>
@@ -68,8 +69,6 @@ export default {
       console.log(`Book.detail:${resp.result}`)
       if(resp.returncode === 1000) {
         this.book = resp.result
-        // this.quotes = resp.result.quotes
-        // this.reviews = resp.result.reviews || []
       } else {
         console.log(`error:${resp}`)
       }

@@ -3,11 +3,11 @@
   <div class="flex flex-col my-0 mx-auto review-form">
     <div class="nav-text-color text-2xl font-medium mb-2">写书评</div>
   <!-- 图书信息 -->
-  <div class="book-info flex flex-row">
-    <img src="http://127.0.0.1:5000/static/images/book/s3745215.jpg" class="book-cover">
+  <div class="book-info flex flex-row" v-if="book">
+    <img :src="cover_url(book.image_url)" class="book-cover">
     <div class="flex flex-col justify-around ml-2">
-      <div class="text-blue-400">明朝那些事儿</div>
-      <div class="text-xs text-gray-400">限量版/当年明月</div>
+      <div class="text-blue-400">{{ book.name }}</div>
+      <div class="text-xs text-gray-400">{{ book.author}}</div>
     </div>
   </div>
   <!-- End 图书信息 -->
@@ -30,7 +30,7 @@
     </textarea> -->
     <div class="editor-container mt-2">
           <div class="quill-editor"
-                :content="comment"
+                :content="content"
                 @change="onEditorChange($event)"
                 @blur="onEditorBlur($event)"
                 @focus="onEditorFocus($event)"
@@ -48,13 +48,26 @@
 <script>
 import Layout from "@/pages/layout";
 import * as api from "@/api";
-import {showError, showSuccess} from "~/tool";
+import {cover_url, showError, showSuccess} from "~/tool";
 export default {
   name: "create",
   components: {
     Layout,
   },
+  async fetch() {
+    await api.book({"id":this.bookid}).then((resp) => {
+      console.log(`Book.detail:${resp.result}`)
+      if(resp.returncode === 1000) {
+        this.book = resp.result
+      } else {
+        console.log(`error:${resp}`)
+      }
+    }).catch((e) => {
+      console.log(e)
+    })
+  },
   methods:{
+    cover_url,
     submit() {
       let params = {
         book_id:this.bookid,
@@ -98,6 +111,7 @@ export default {
       title:'',
       rating: 0,
       content:'',
+      book: null,
       bookid: this.$route.query.bookid,
       starStyle: {
         fullStarColor: '#ed8a19',
@@ -117,7 +131,6 @@ export default {
       }
     }
   }
-
 }
 </script>
 

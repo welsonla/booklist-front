@@ -11,29 +11,33 @@
     <template v-if="notes.length > 0">
       <template v-for="note in notes">
         <!-- 笔记标注 -->
-        <nuxt-link :to="'/book/note/'+note.id">
         <div class="py-4 text-sm">
-          <div class="text-gray-800 mt-2 note-quote leading-5">
+          <div class="text-gray-600 mt-2 note-quote leading-5">
             {{ note.content }}
           </div>
-          <div class="leading-12 note-quote-author flex">
-            <div class="">
-              <span class="text-blue-500">{{ note.user.name  }}</span>
-              <span class="text-gray-400">{{ note.created_at }}</span>
-              <span class="text-gray-400">《{{ note.chapter }}》　<span v-show="note.page > 0">{{ note.page }}</span></span>
-            </div>
-            <div class="flex flex-row content-center items-center text-gray-400">
-              <template v-if="note.source === 1">
-                来自微信读书&nbsp;<font-awesome-icon :icon="['fab', 'weixin']"  class="text-green-700 h-3 w-3"/>
-              </template>
-              <template v-else-if="note.source === 2">
-                来自Kindle&nbsp;<font-awesome-icon :icon="['fab', 'amazon']" class="text-gray-700 h-4 w-4"/>
-              </template>
-            </div>
+          <div class="text-gray-800 mt-2 note-comment leading-5 mb-2" v-if="note.comment">
+            {{ note.comment }}
           </div>
-
+          <!-- 底部信息 -->
+          <nuxt-link :to="'/book/note/'+note.id">
+            <div class="leading-12 note-quote-author flex">
+              <div class="">
+                <span class="text-blue-500">{{ note.user.name  }}</span>
+                <span class="text-gray-400">{{ note.created_at }}</span>
+                <span class="text-gray-400">《{{ note.chapter }}》　<span v-show="note.page > 0">{{ note.page }}</span></span>
+              </div>
+              <div class="flex flex-row content-center items-center text-gray-400">
+                <template v-if="note.source === 1">
+                  来自微信读书&nbsp;<font-awesome-icon :icon="['fab', 'weixin']"  class="text-green-700 h-3 w-3"/>
+                </template>
+                <template v-else-if="note.source === 2">
+                  来自Kindle&nbsp;<font-awesome-icon :icon="['fab', 'amazon']" class="text-gray-700 h-4 w-4"/>
+                </template>
+              </div>
+            </div>
+          </nuxt-link>
+          <!-- End 底部信息 -->
         </div>
-        </nuxt-link>
         <!-- End 笔记标注 -->
       </template>
     </template>
@@ -45,15 +49,22 @@
 
 <script>
 import NoData from "~/components/NoData";
+import {mapGetters} from "vuex";
 export default {
   name: "NoteList",
   props:{
     bookId:String,
     notes:Array,
-    total:Number
+    total:Number,
+    userid:Number
   },
   components:{
     NoData
+  },
+  computed: {
+    ...mapGetters({
+      user:'user/user',
+    })
   },
   methods:{
     writeComment() {
@@ -64,6 +75,9 @@ export default {
         }
       })
     }
+  },
+  mounted() {
+    console.log(`${this.user.id}`)
   }
 }
 </script>

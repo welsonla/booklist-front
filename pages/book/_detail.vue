@@ -40,7 +40,7 @@ import * as api from '@/api';
 import NoteList from '@/components/Book/NoteList';
 import CommentList from "@/components/Book/CommentList";
 import * as Tool from "@/tool";
-import {addFavorite, delFavorite, getFavorite, showSuccess} from "@/tool";
+import {addFavorite, delFavorite, getFavorite, showError, showSuccess} from "@/tool";
 
 export default {
   name: "BookDetail",
@@ -58,6 +58,22 @@ export default {
       title:'',
       favorite:null
     }
+  },
+  async fetch() {
+    await api.book({"id":this.bookId}).then((resp) => {
+      // console.log(`Book.detail:${resp.result}`)
+      if(resp.returncode === 1000) {
+        this.book = resp.result
+        this.quotes = resp.result.quotes
+        this.reviews = resp.result.reviews || []
+        this.title = this.book.name
+      } else {
+        showError('获取图书信息失败')
+        // console.log(`error:${resp}`)
+      }
+    }).catch((e) => {
+      console.log(e)
+    })
   },
   computed:{
     bookInfo() {
@@ -91,19 +107,7 @@ export default {
     }
   },
   mounted() {
-    api.book({"id":this.bookId}).then((resp) => {
-      console.log(`Book.detail:${resp.result}`)
-      if(resp.returncode === 1000) {
-        this.book = resp.result
-        this.quotes = resp.result.quotes
-        this.reviews = resp.result.reviews || []
-        this.title = this.book.name
-      } else {
-        console.log(`error:${resp}`)
-      }
-    }).catch((e) => {
-      console.log(e)
-    })
+
 
     getFavorite(api.fav_book, this.bookId, (resp) => {
       this.favorite = resp
