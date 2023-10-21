@@ -85,3 +85,5 @@ export const getFavoriteByUserId = (params = {}) => request(`post`, `/api/collec
 
 // 搜索
 export const search = (params = {}) => request(`post`, '/api/search', params)
+
+export const tag = (params = {}) => request(`post`, `/api/tag`, params)

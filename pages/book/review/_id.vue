@@ -69,13 +69,13 @@ export default {
   },
   async fetch() {
     await api.reviewDetail({'id':this.reviewId}).then((resp)=>{
-      console.log(JSON.stringify(resp))
+      // console.log(JSON.stringify(resp))
       if (resp.returncode === 1000) {
         this.review = resp.result
         this.title= this.review.title
       }
     }).catch((e)=>{
-      console.log(`review.detail.error:${e}`)
+      // console.log(`review.detail.error:${e}`)
     })
   },
   mounted() {

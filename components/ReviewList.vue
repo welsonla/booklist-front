@@ -3,7 +3,7 @@
     <div class="text-xl section-title">{{title||"最受欢迎的书评"}}</div>
     <div class="flex flex-col">
       <template v-for="note in notes">
-        <div class="flex flex-row py-4 border-b border-gray-200" :key="`note-`+note.id">
+        <div class="flex flex-row py-4 border-b border-gray-200 last:border-0" :key="`note-`+note.id">
           <div class="text-sm font-semibold text-gray-800">
             <template v-if="note?.book?.image_url">
             <img :src="cover_url(note?.book?.image_url) " class="note-item-cover"/>

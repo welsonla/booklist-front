@@ -6,7 +6,7 @@
 <!--      <div class="text-3xl font-bold nav-text-color">时光书单</div>-->
       <div class="flex flex-row rounded-md h-12 w-full border-gray-500  border-2 mt-4 items-center ml-2 px-2 py-0">
         <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="inline-block w-6 h-6 text-gray-500"/>
-        <input type="text" class="bg-transparent flex-1 ml-2 searchText" placeholder="搜索书名/作者/ISBN" v-model="searchText">
+        <input type="text" class="bg-transparent flex-1 ml-2 searchText" placeholder="搜索书名/作者" v-model="searchText">
         <div class="w-10 h-10 rounded-full flex flex-row items-center justify-center cursor-pointer" @click="search">
           <font-awesome-icon :icon="['fas', 'arrow-right']"  class="text-gray-400 h-6 w-6"/>
         </div>

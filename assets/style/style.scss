@@ -212,16 +212,17 @@ body {
 .collect-item {
   flex-shrink: 0;
   width: 120px;
-  height: 180px;
+  //height: 200px;
   overflow: hidden;
 }
 
 .collect-item img {
   width: 120px;
-  height: 153px;
+  height: 178px;
   overflow: hidden;
-  object-fit: cover;
+  object-fit: fill;
   margin-bottom: 10px;
+  border: 1px solid #d8dee4;
 }
 
 /* 防止滚动条导致的页面抖动 */

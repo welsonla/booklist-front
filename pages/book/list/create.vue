@@ -136,26 +136,26 @@ export default {
 
     },
     onEditorBlur(editor) {
-      console.log('editor blur!', editor)
+      // console.log('editor blur!', editor)
     },
     onEditorFocus(editor) {
-      console.log('editor focus!', editor)
+      // console.log('editor focus!', editor)
     },
     onEditorReady(editor) {
-      console.log('editor ready!', editor)
+      // console.log('editor ready!', editor)
     },
     onEditorChange({ editor, html, text }) {
-      console.log('editor change!', editor, html, text)
+      // console.log('editor change!', editor, html, text)
       this.content = html
     },
     search() {
       console.log('click search')
       let params = { "q": this.keyword }
       api.search(params).then((resp) => {
-        console.log(JSON.stringify(resp.result.list))
+        // console.log(JSON.stringify(resp.result.list))
         this.bookArray = resp.result.list
       }).catch((e) => {
-        console.log(`error:${e.stackTrace}`)
+        // console.log(`error:${e.stackTrace}`)
       })
     },
     mouseover(book){

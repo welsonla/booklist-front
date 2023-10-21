@@ -72,13 +72,13 @@ export default {
         // console.log(`error:${resp}`)
       }
     }).catch((e) => {
-      console.log(e)
+      // console.log(e)
     })
   },
   computed:{
     bookInfo() {
       let info = this.book
-      console.log(info)
+      // console.log(info)
       return info
     }
   },

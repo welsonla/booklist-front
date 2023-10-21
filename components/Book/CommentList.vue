@@ -9,15 +9,15 @@
       </div>
       <template v-if="reviews.length > 0">
         <template v-for="review in reviews">
-          <div class="py-4 border-b border-dashed">
+          <div class="py-4 border-b border-dashed last:border-0">
             <div class="leading-12">
-              <span class="text-blue-500 text-sm hover:bg-amber-100">{{ review.author.name }}</span>
+              <span class="text-sky-700 text-sm hover:bg-amber-100">{{ review.author.name }}</span>
               <span class="text-gray-400 text-sm">{{ review.created_at }}</span>
             </div>
             <div class="bg-gray-200 py-2 text-sm pl-2 text-gray-600"><nuxt-link :to="'/book/review/'+review.id">{{ review.title }}</nuxt-link></div>
             <div class="text-sm text-gray-600 mt-2 leading-6">
               <template v-if="review.content.length > 400">
-                {{ review.content.substring(0,400) }}<a :href="`/book/review/`+review.id" class="text-blue-400">(查看原文)</a>
+                {{ review.content.substring(0,400) }}<a :href="`/book/review/`+review.id" class="text-sky-700">(查看原文)</a>
               </template>
               <template v-else>
                 {{ review.content }}
@@ -25,6 +25,7 @@
             </div>
           </div>
         </template>
+        <div class="text-sky-700 text-right text-sm"><nuxt-link :to="'/book/reviewlist?bookid='+bookId">&gt;&nbsp;查看更多书评</nuxt-link></div>
       </template>
       <template v-else>
         <NoData :message="`暂无书评`"/>

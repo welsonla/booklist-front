@@ -98,7 +98,7 @@ export default {
   async fetch() {
     let params = {id:this.$route.params.id}
     await api.collectDetail(params).then((resp) => {
-      console.log(JSON.stringify(resp))
+      // console.log(JSON.stringify(resp))
       this.collect = resp.result
       this.title = this.collect.name
     }).catch((e) => {
@@ -121,7 +121,7 @@ export default {
         addFavorite(2, this.collectId, (resp) => {
           this.favorite = resp
           this.collect.like_count += 1
-          console.log('收藏成功')
+          // console.log('收藏成功')
           showSuccess('收藏成功')
         })
       } else {
@@ -129,14 +129,14 @@ export default {
         delFavorite(2, this.collectId, () => {
           this.favorite = null
           this.collect.like_count -= 1
-          console.log('收藏失败')
+          // console.log('收藏失败')
           showSuccess('已取消收藏')
         })
       }
     }
   },
   mounted() {
-    console.log(`collectId:${this.collectId}`)
+    // console.log(`collectId:${this.collectId}`)
     getFavorite(api.fav_collect, this.collectId, (resp) => {
       this.favorite = resp
     })
