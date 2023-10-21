@@ -1,13 +1,12 @@
-import axios from 'axios';
 import Cookie from "js-cookie";
-
+import axios from 'axios';
 export const host = "http://127.0.0.1:5000"
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.interceptors.request.use(config => {
-  config.headers["sign"] = Cookie.get('token')
+  config.headers["sign"] = Cookie.get('token') || ''
   return config
 }, error => {
-  Promise.reject(error)
+  return Promise.reject(error)
 })
 
 function request(method, route, obj, domain = '') {
@@ -50,6 +49,8 @@ export const createNote = (params = {}) => request(`post`, '/api/book/quote/crea
 // 创建微信摘抄
 export const importWechat = (params = {}) => request(`post`, '/api/book/note/wechat/import', params)
 
+export const importKindle = (params = {}) => request(`post`, '/api/book/note/kindle/import', params)
+
 // 某用户的某本书的所有笔记
 export const notelist = (params = {}) => request(`post`, `/api/book/note/list`, params)
 
@@ -87,3 +88,7 @@ export const getFavoriteByUserId = (params = {}) => request(`post`, `/api/collec
 export const search = (params = {}) => request(`post`, '/api/search', params)
 
 export const tag = (params = {}) => request(`post`, `/api/tag`, params)
+
+export const reviews = (params = {}) => request(`post`, '/api/reviews', params)
+
+export const notes = (params = {}) => request(`post`, '/api/notes', params)

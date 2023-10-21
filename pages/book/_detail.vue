@@ -24,9 +24,9 @@
           </div>
         </div>
       </div>
-    
+
       <!-- 读书笔记  -->
-      <NoteList :bookId="bookId" :notes="quotes"/>
+      <NoteList :bookId="bookId" :notes="quotes" :edit="true"/>
 
       <!-- 书评列表 -->
       <CommentList :bookId="bookId" :reviews="reviews"/>

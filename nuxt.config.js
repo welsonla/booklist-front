@@ -47,12 +47,13 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // 'nuxt-rating'
+    '@nuxtjs/axios'
   ],
-  // axios: {
-  //   proxy:true,
+  axios: {
+     proxy:false,
   //   prefix: '/api',
   //   credentials: true
-  // },
+  },
   // proxy:{
   //   target: "http://localhost:5000",
   //   pathRewrite: {
@@ -63,7 +64,14 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    transpile: [({ isLegacy }) => isLegacy && 'axios'],
-    analyze: true
+    // transpile: [({ isLegacy }) => isLegacy && 'axios'],
+    // analyze: true,
+    // cache: true,
+    // parallel: true,
+    // splitChunks: {
+    //   layouts: true,
+    //   pages: true,
+    //   commons: true
+    // }
   }
 }

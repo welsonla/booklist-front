@@ -1,17 +1,17 @@
 <template>
   <div class="flex flex-col" :class="bookId ? 'mt-4' : ''">
     <!--顶部导航 -->
-    <div class="flex flex-row justify-between leading-12 border-b border-color pb-2" v-show="bookId">
+    <div class="flex flex-row justify-between leading-12 border-b pb-2" v-show="bookId">
       <div class="text-lg nav-text-color ">笔记与摘录(共{{ total || notes.length}}条)</div>
-      <div class="leading-12 flex flex-row gap-x-2">
+      <div class="leading-12 flex flex-row gap-x-2" v-show="edit">
         <div class="flex flex-row bg-green-200 text-green-600 text-sm px-4 rounded-md items-center note-write-button" @click="writeComment">
           <font-awesome-icon :icon="['fas', 'pen-to-square']"  class="text-green-600 h-3 w-3"/>&nbsp;写笔记
         </div>
-        <div class="flex flex-row bg-green-200 text-green-600 text-sm px-4 rounded-md items-center note-write-button relative" @mouseover="mouseover" >
+        <div class="flex flex-row bg-green-200 text-green-600 text-sm px-4 rounded-md items-center note-write-button relative" @mouseover="mouseover">
             导入
-          <div class="flex flex-col absolute py-2 gap-y-4 bg-green-200 rounded right-0 text-center" style="top: 25px; left: 0px;" @mouseleave="mouseleave" v-show="showImport">
-            <nuxt-link :to="'/book/note/import/wechat?bookid='+bookId"><div class="flex flex-row justify-center text-lg"><font-awesome-icon :icon="['fab', 'weixin']"  class="text-green-700 h-5 w-5"/></div></nuxt-link>
-            <nuxt-link :to="'/book/note/import/kindle?bookid='+bookId"><div class="flex flex-row justify-center"><font-awesome-icon :icon="['fab', 'amazon']" class="text-gray-700 h-5 w-5"/></div></nuxt-link>
+          <div class="flex flex-col absolute justify-evenly bg-green-200 rounded right-0 text-center overflow-visible box-content z-50" style="top: 25px; left: 0;height:60px;" @mouseleave="mouseleave" v-show="showImport">
+            <nuxt-link :to="'/book/note/import/wechat?bookid='+bookId"><div class="flex  flex-row justify-center text-lg"><font-awesome-icon :icon="['fab', 'weixin']"  class="text-green-700 h-5 w-5"/></div></nuxt-link>
+            <nuxt-link :to="'/book/note/import/kindle?bookid='+bookId"><div class="flex  flex-row justify-center"><font-awesome-icon :icon="['fab', 'amazon']" class="text-gray-700 h-5 w-5"/></div></nuxt-link>
           </div>
         </div>
       </div>
@@ -49,7 +49,7 @@
         </div>
         <!-- End 笔记标注 -->
       </template>
-      <div class="text-sky-700 text-right text-sm"><nuxt-link :to="'/book/reviewlist?bookid='+bookId">&gt;&nbsp;查看更多笔记</nuxt-link></div>
+      <div class="text-sky-700 text-right text-sm leading-8"><nuxt-link :to="'/book/notes?bookid='+bookId">&gt;&nbsp;查看更多笔记</nuxt-link></div>
     </template>
     <template v-else>
       <NoData :message="`暂无笔记`"/>
@@ -66,11 +66,15 @@ export default {
     bookId:String,
     notes:Array,
     total:Number,
-    userid:Number
+    userid:Number,
+    edit: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
-      showImport:false
+      showImport:false,
     }
   },
   components:{

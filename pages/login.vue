@@ -84,12 +84,12 @@ export default {
       })
     },
     register() {
-      if (this.regName.length == 0) {
+      if (this.regName.length === 0) {
         showError('请输入用户名')
         return
       }
 
-      if (this.regEmail.length == 0) {
+      if (this.regEmail.length === 0) {
         showError('请输入注册邮箱')
         return;
       }

@@ -2,7 +2,7 @@
 <Layout>
   <div class="flex flex-row">
     <!-- 书单详情 -->
-    <div class="flex flex-col" v-if="collect">
+    <div class="flex flex-col flex-1" v-if="collect">
       <div class="text-2xl mb-2"> {{ collect.name }}</div>
       <!-- 作者与图书信息 -->
       <div class="flex flex-row items-center box-border mt-2 mb-2">

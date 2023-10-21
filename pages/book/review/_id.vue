@@ -16,13 +16,13 @@
       <div class="text-xs flex flex-col justify-between ml-2">
           <!-- 作者发表 -->
           <div class="text-gray-400 text-sm" v-if="review.author">
-            <a :href="`/user/`+review.author_id" class="text-blue-400 hover:bg-amber-100">{{ review.author.name  }}</a>
+            <a :href="`/user/`+review.author_id" class="text-sky-700 hover:bg-amber-100">{{ review.author.name  }}</a>
             发表于 {{ review.created_at }}
           </div>
           <!-- End 作者发表 -->
           <!-- 图书信息 -->
           <div class="" v-if="review.book != null">
-            <a class="text-blue-400 text-sm hover:bg-amber-100" :href="'/book/'+review.book_id">{{ review.book.name }}</a>
+            <a class="text-sky-700 text-sm hover:bg-amber-100" :href="'/book/'+review.book_id">{{ review.book.name }}</a>
             <client-only>
             <star-rating v-model="review.rating"
                          :star-size="14"
@@ -36,7 +36,7 @@
   </div>
   <!-- End 作者与图书信息 -->
   <!-- 书评内容 -->
-  <div class="text-sm text-gray-600 mt-4 mb-4 leading-6  whitespace-pre-wrap"
+  <div class="text-lg text-gray-700 mt-4 mb-4 leading-8  whitespace-pre-wrap" style="font-family: wenkai;"
        v-show="review" v-html="review.content"></div>
   <!-- End 书评内容 -->
   <!-- 收藏 -->

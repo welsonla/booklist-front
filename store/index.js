@@ -14,6 +14,7 @@ export const mutations = {
 
 export const actions = {
   nuxtServerInit({commit}, {req, app}) {
+    console.log('nuxtServerInit:请求init')
     let token = null
     let userCookie = null
     if(req.headers.cookie) {
@@ -21,6 +22,7 @@ export const actions = {
       const cookies = req.headers.cookie.split(';')
       const tk = 'token='
       const us = 'user='
+      console.log('nuxtServerInit：处理cookie')
       cookies.forEach(e => {
         if(e.includes(tk)) {
           token = e.split(tk)[1]
@@ -28,6 +30,7 @@ export const actions = {
         } else if (e.includes(us)){
           userCookie = e.split(us)[1]
           let userJSON = JSON.parse(decodeURIComponent(userCookie))
+          console.log('nuxtServerInit:更新用户')
           commit('user/USER', userJSON)
         }
       });

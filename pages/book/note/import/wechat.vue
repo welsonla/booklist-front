@@ -14,7 +14,7 @@
     <div class="flex flex-col note-write-form">
       <div class="flex content-center my-4">
         <div for="comment">粘贴微信读书笔记内容</div>
-      <a href="" class="text-sky-600">(如何导出微信读书笔记?)</a>
+      <a href="https://www.bilibili.com/video/BV1cM4y1m76u/?spm_id_from=333.788.recommend_more_video.23" class="text-sky-600">(如何导出微信读书笔记?)</a>
       </div>
       <textarea placeholder="请将微信导出的笔记粘贴到此处"
                 rows="10"

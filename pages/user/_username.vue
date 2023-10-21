@@ -14,8 +14,8 @@
       <div class="text-sm">
         <ul class="flex items-center gap-x-8">
           <li><a :href="`/user/`+userInfo.id" class="hover:bg-orange-300 hover:text-white">主页</a></li>
-          <li><a :href="`/user/notes/`+userInfo.id" class="hover:bg-orange-300 hover:text-white">笔记</a></li>
-          <li><a :href="`/user/reviews/`+userInfo.id" class="hover:bg-orange-300 hover:text-white">书评</a></li>
+          <li><a :href="`/book/notes?userid=`+userInfo.id" class="hover:bg-orange-300 hover:text-white">笔记</a></li>
+          <li><a :href="`/book/reviews?userid=`+userInfo.id" class="hover:bg-orange-300 hover:text-white">书评</a></li>
           <li><a :href="`/user/booklist/`+userInfo.id" class="hover:bg-orange-300 hover:text-white">书单</a></li>
           <li><a :href="`/user/favorite/`+userInfo.id" class="hover:bg-orange-300 hover:text-white">收藏({{ favorite_count }})</a></li>
         </ul>
@@ -24,10 +24,10 @@
   </div>
   <div class="flex flex-row">
     <!--  主页列表 -->
-    <div class="flex flex-col ml-4" style="width:920px;">
+    <div class="flex flex-col ml-4 flex-1" style="width:920px;">
       <!-- 读过的书 -->
       <div class="flex flex-col">
-        <div class="flex flex-row justify-between leading-12 border-b border-color pb-2 mb-2">
+        <div class="flex flex-row justify-between leading-12 border-b pb-2 mb-2">
           <div class="text-lg nav-text-color">书单(共{{collections.length}}条)</div>
           <div class="flex flex-row bg-green-200 text-green-600 text-sm px-4 rounded-md items-center note-write-button" @click="createList">
             <font-awesome-icon :icon="['fas', 'pen-to-square']"  class="text-green-600 h-3 w-3"/>&nbsp;创建书单
@@ -39,7 +39,7 @@
               <div class="flex flex-col collect-item" :key="'collect-'+collection.id">
                 <img :src="cover_url(collection.cover_url)">
                 <div class="text-sm text-sky-600">
-                  {{ collection.name }}
+                  <nuxt-link :to="'/book/list/'+collection.id">{{ collection.name }}</nuxt-link>
                 </div>
               </div>
             </template>
@@ -89,7 +89,7 @@
           <div class="text-gray-700 text-sm leading-6">
             {{ userInfo.bio }}
           </div>
-          <div class="flex flex-row">
+          <div class="flex flex-row" v-show="user && user.id === parseInt(userid)">
             <a @click="logout" class="text-sky-600 underline">退出登录</a>
           </div>
         </div>
@@ -109,6 +109,7 @@ import NoteList from "@/components/Book/NoteList";
 import CommentList from "@/components/Book/CommentList";
 import {cover_url, showSuccess} from "@/tool";
 import Cookie from "js-cookie";
+import user from "@/store/user";
 // import {mapGetters, mapMutations, mapState} from 'vuex';
 export default {
   name: "user",
@@ -120,14 +121,14 @@ export default {
   },
   async fetch() {
     await api.user({userid:this.$route.params.username}).then((resp) => {
-      console.log(`user.data:${JSON.stringify(resp)}`)
+      // console.log(`user.data:${JSON.stringify(resp)}`)
       this.userInfo = resp.result
       this.notes = resp.result.notes || []
       this.reviews = resp.result.reviews || []
       this.favorite_count = resp.result.favorite_count
       this.collections = resp.result.collects
     }).catch((error) => {
-      console.log(`error:${error}`)
+      // console.log(`error:${error}`)
     })
   },
   mounted() {
@@ -137,6 +138,8 @@ export default {
       }
     }).catch((e) => {
     })
+
+    console.log(`user.id:${this.user.id}`)
   },
   computed: {
     ...mapGetters({
@@ -145,9 +148,6 @@ export default {
   },
   methods: {
     cover_url,
-    fetchUser() {
-      // this.$store.dispatch('user/login')
-    },
     createList() {
       this.$router.push({
         path:'/book/list/create'

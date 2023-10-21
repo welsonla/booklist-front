@@ -1,7 +1,11 @@
 <template>
   <div class="flex flex-row items-end content-end justify-between 12 py-4 text-gray-500 nav-text-color">
-    <div class="nav-text-color text-center text-2xl font-semibold">
+    <div class="nav-text-color text-center text-2xl font-semibold flex flex-row items-center">
       <a href="/">时光书单</a>
+<!--      <div class="ml-10 text-xl font-normal text-sky-700">-->
+<!--        <a href="">图书</a>-->
+<!--        <a href="">书单</a>-->
+<!--      </div>-->
     </div>
     <div class="user-info flex flex-row justify-between">
 

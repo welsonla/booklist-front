@@ -10,10 +10,10 @@
           <p>摘抄于:<a :href="'/book/'+note.book_id" class="text-sky-700">{{ note.book.name }}</a></p>
         </div>
       </div>
-      <div class="text-sm text-gray-600 mt-2 border-l-gray-300 border-l-4 pl-4 whitespace-pre-line" v-html="note.content">
+      <div class="text-lg font-light text-gray-600 mt-2 border-l-gray-300 border-l-4 pl-4 whitespace-pre-wrap" style="font-family: wenkai" v-html="note.content.replaceAll('　　','')">
       </div>
-      <div class="mt-4 leading-12 text-sm text-gray-900" v-html="note.comment"></div>
-      <div class="leading-12  text-sm text-gray-500 pl-4 mb-2 mt-4 py-1 text-right flex flex-row items-center justify-end">
+      <div class="mt-4 leading-12 text-lg text-gray-800" style="font-family: wenkai" v-html="note.comment"></div>
+      <div class="leading-12  text-base text-gray-500 pl-4 mb-2 mt-4 py-1 text-right flex flex-row items-center justify-end">
         <span class=" text-right">----------------- <span v-if="note.page">引自第{{ note.page }}页 发表于</span>{{note.created_at}}</span>
         &nbsp;&nbsp;
           <template v-if="note.source === 1">
@@ -65,6 +65,11 @@ export default {
     }).catch((e) => {
       console.log(e)
     })
+  },
+  head() {
+    return {
+      title: this.note?.chapter || '笔记'
+    }
   },
   data() {
     return {

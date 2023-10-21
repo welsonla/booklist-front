@@ -2,7 +2,7 @@
 
 <template>
 <Layout>
-  <div class="text-lg nav-text-color font-medium">分类:{{ this.name }}({{total_count}})</div>
+  <div class="text-lg nav-text-color font-medium">分类:{{ this.name }}({{items_count}})</div>
   <template v-for="b in books">
     <BookItem :book="b" />
   </template>
@@ -19,6 +19,16 @@ import * as api from '~/api';
 export default {
   name:'book-tag',
   components: {BookItem, Layout},
+  mounted() {
+    // api.tag({name:this.name, p:this.p}).then((resp) => {
+    //   console.log(JSON.stringify(resp))
+    //   this.books = resp.result.list
+    //   this.total = resp.result.total
+    //   this.items_count = resp.result.total_items
+    // }).catch((e) => {
+    //
+    // })
+  },
   async fetch() {
     await api.tag({name:this.name, p:this.p}).then((resp) => {
       console.log(JSON.stringify(resp))
