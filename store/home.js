@@ -22,7 +22,7 @@ const actions = {
   home({commit }, params = {}) {
     return api.home(params).then((resp) => {
         let dict = resp.result
-        console.log(JSON.stringify(dict))
+        // console.log(JSON.stringify(dict))
         if(resp.returncode === 1000) {
           commit(types.HOME, dict)
           return Promise.resolve(dict)

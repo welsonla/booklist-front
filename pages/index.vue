@@ -96,8 +96,5 @@ export default {
 </script>
 
 <style lang="scss">
-.searchText:focus{
-  outline: 0px;
-  outline-color: none;
-}
+
 </style>

@@ -225,6 +225,11 @@ body {
   border: 1px solid #d8dee4;
 }
 
+.searchText:focus{
+  outline: 0px;
+  outline-color: none;
+}
+
 /* 防止滚动条导致的页面抖动 */
 html{
   padding-left: calc(100vw - 100%);

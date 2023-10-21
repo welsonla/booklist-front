@@ -2,7 +2,7 @@
 
 <template>
 <Layout>
-  <div class="text-lg nav-text-color font-medium">分类:{{ this.name }}</div>
+  <div class="text-lg nav-text-color font-medium">分类:{{ this.name }}({{total_count}})</div>
   <template v-for="b in books">
     <BookItem :book="b" />
   </template>
@@ -24,6 +24,7 @@ export default {
       console.log(JSON.stringify(resp))
       this.books = resp.result.list
       this.total = resp.result.total
+      this.total_count = resp.result.total_items
     }).catch((e) => {
 
     })
@@ -33,7 +34,13 @@ export default {
       books:[],
       p:this.$route.query.p || 1,
       total:0,
+      items_count:0,
       name:this.$route.query.name
+    }
+  },
+  head() {
+    return {
+      title: `分类:${this.name}`
     }
   }
 }

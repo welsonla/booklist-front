@@ -24,8 +24,7 @@
           </div>
         </div>
       </div>
-
-
+    
       <!-- 读书笔记  -->
       <NoteList :bookId="bookId" :notes="quotes"/>
 
