@@ -3,7 +3,7 @@
     <div class="flex flex-col">
       <div class="flex flex-row justify-between leading-12 border-b last:border-0 pb-2">
         <div class="text-lg nav-text-color">书评</div>
-        <div class="flex flex-row bg-green-200 text-green-600 text-sm px-4 rounded-md items-center note-write-button" @click="writeComment">
+        <div class="flex flex-row bg-green-200 text-green-600 text-sm px-4 rounded-md items-center note-write-button" @click="writeComment" v-show="canEdit">
           <font-awesome-icon :icon="['fas', 'pen-to-square']"  class="text-green-600 h-3 w-3"/>&nbsp;写书评
         </div>
       </div>
@@ -25,7 +25,7 @@
             </div>
           </div>
         </template>
-        <div class="text-sky-700 text-right text-sm leading-8"><nuxt-link :to="'/book/reviews?bookid='+bookId">&gt;&nbsp;查看更多书评</nuxt-link></div>
+        <div class="text-sky-700 text-right text-sm leading-8" v-show="showMore"><nuxt-link :to="'/book/reviews?bookid='+bookId">&gt;&nbsp;查看更多书评</nuxt-link></div>
       </template>
       <template v-else>
         <NoData :message="`暂无书评`"/>
@@ -40,7 +40,15 @@ export default {
   name: "CommentList",
   props:{
     bookId:String,
-    reviews:Array
+    reviews:Array,
+    canEdit:{
+      type:Boolean,
+      default:false
+    },
+    showMore:{
+      type:Boolean,
+      default: false
+    }
   },
   components:{
     NoData

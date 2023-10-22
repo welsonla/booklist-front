@@ -34,7 +34,7 @@ export default {
       console.log(JSON.stringify(resp))
       this.books = resp.result.list
       this.total = resp.result.total
-      this.total_count = resp.result.total_items
+      this.items_count = resp.result.total_items
     }).catch((e) => {
 
     })

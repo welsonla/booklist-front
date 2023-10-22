@@ -81,10 +81,28 @@ export default {
   components: {
     Layout
   },
+  mounted() {
+    if(this.edit && this.editId > 0){
+      api.collectDetail({id: this.editId}).then((resp) => {
+        console.log(JSON.stringify(resp))
+        if (resp.returncode === 1000) {
+          let collect = resp.result
+          this.content = collect.content
+          this.title = collect.name
+          this.selectArray = collect.books
+          this.rating = parseFloat(review.rating)
+        }
+      }).catch((e) => {
+        console.log(e)
+      })
+    }
+  },
   data() {
     return {
       title: '',
       content: '',
+      edit: (this.$route.query.ation || '')==='edit',
+      editId: (this.$route.query.id || 0),
       bookArray:[],
       selectArray:[],
       editorOption: {
@@ -174,7 +192,7 @@ export default {
     },
     removeBook(book) {
       this.selectArray = this.selectArray.filter((item) => {
-        return item.id != book.id
+        return item.id !== book.id
       })
     }
   },

@@ -1,6 +1,9 @@
 <template>
 <div class="flex-col">
-  <div class="text-xl section-title">热门书单</div>
+  <div class="text-xl section-title flex justify-between">
+    <div>热门书单</div>
+    <div class="text-sky-700 text-base"><a href="/book/collects">&lt;&lt;更多</a></div>
+  </div>
   <div class="flex-col">
     <div class="">
       <div class="flex flex-row justify-between">

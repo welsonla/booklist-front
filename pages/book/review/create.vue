@@ -101,10 +101,22 @@ export default {
     onEditorChange({ editor, html, text }) {
       console.log('editor change!', editor, html, text)
       this.content = html
-    }
+    },
   },
   mounted() {
-    // document.getElementsByClassName("vue-star-rating-rating-text").hide()
+    if(this.edit && this.editId > 0){
+      api.reviewDetail({id: this.editId}).then((resp) => {
+        console.log(JSON.stringify(resp))
+        if (resp.returncode === 1000) {
+          let review = resp.result
+          this.content = review.content
+          this.title = review.title
+          this.rating = parseFloat(review.rating)
+        }
+      }).catch((e) => {
+        console.log(e)
+      })
+    }
   },
   data() {
     return {
@@ -113,6 +125,8 @@ export default {
       content:'',
       book: null,
       bookid: this.$route.query.bookid,
+      edit: (this.$route.query.ation || '')==='edit',
+      editId: (this.$route.query.id || 0),
       starStyle: {
         fullStarColor: '#ed8a19',
         emptyStarColor: '#737373',

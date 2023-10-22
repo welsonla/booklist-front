@@ -112,6 +112,11 @@ export default {
       dataArray:[]
     }
   },
+  head() {
+    return {
+      title: '收藏列表'
+    }
+  },
   methods: {
     cover_url,
     fetchData(typeid) {

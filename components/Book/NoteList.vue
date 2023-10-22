@@ -2,7 +2,7 @@
   <div class="flex flex-col" :class="bookId ? 'mt-4' : ''">
     <!--顶部导航 -->
     <div class="flex flex-row justify-between leading-12 border-b pb-2" v-show="bookId">
-      <div class="text-lg nav-text-color ">笔记与摘录(共{{ total || notes.length}}条)</div>
+      <div class="text-lg nav-text-color ">笔记与摘录</div>
       <div class="leading-12 flex flex-row gap-x-2" v-show="edit">
         <div class="flex flex-row bg-green-200 text-green-600 text-sm px-4 rounded-md items-center note-write-button" @click="writeComment">
           <font-awesome-icon :icon="['fas', 'pen-to-square']"  class="text-green-600 h-3 w-3"/>&nbsp;写笔记
@@ -49,7 +49,7 @@
         </div>
         <!-- End 笔记标注 -->
       </template>
-      <div class="text-sky-700 text-right text-sm leading-8"><nuxt-link :to="'/book/notes?bookid='+bookId">&gt;&nbsp;查看更多笔记</nuxt-link></div>
+      <div class="text-sky-700 text-right text-sm leading-8" v-show="showMore"><nuxt-link :to="'/book/notes?bookid='+bookId">&gt;&nbsp;查看更多笔记</nuxt-link></div>
     </template>
     <template v-else>
       <NoData :message="`暂无笔记`"/>
@@ -69,6 +69,10 @@ export default {
     userid:Number,
     edit: {
       type: Boolean,
+      default: false
+    },
+    showMore:{
+      type:Boolean,
       default: false
     }
   },

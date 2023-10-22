@@ -1,5 +1,5 @@
 <template>
-  <div class="container flex flex-col h-full m-auto">
+  <div class="container flex flex-col h-full m-auto" style="min-height: 800px;">
     <Header />
     <div class="flex flex-col flex-1">
     <slot>

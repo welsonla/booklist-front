@@ -92,3 +92,8 @@ export const tag = (params = {}) => request(`post`, `/api/tag`, params)
 export const reviews = (params = {}) => request(`post`, '/api/reviews', params)
 
 export const notes = (params = {}) => request(`post`, '/api/notes', params)
+
+export const collects = (params = {}) => request(`post`, '/api/collects', params)
+export const deleteNote = (params = {}) => request(`post`, '/api/note/del', params)
+export const deleteReview = (params = {}) => request(`post`, '/api/review/del', params)
+export const deleteCollect = (params = {}) => request(`post`, '/api/collect/del', params)

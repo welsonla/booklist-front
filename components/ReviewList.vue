@@ -1,6 +1,8 @@
 <template>
   <div class="flex-col mt-6">
-    <div class="text-xl section-title">{{title||"最受欢迎的书评"}}</div>
+    <div class="text-xl section-title flex justify-between">
+      <div>{{title||"最受欢迎的书评"}}</div>
+    </div>
     <div class="flex flex-col">
       <template v-for="note in notes">
         <div class="flex flex-row py-4 border-b border-gray-200 last:border-0" :key="`note-`+note.id">

@@ -87,6 +87,8 @@ export default {
       quote: undefined,
       comment: undefined,
       bookid: this.$route.query.bookid,
+      edit: (this.$route.query.ation || '')==='edit',
+      editId: (this.$route.query.id || 0),
       editorOption: {
         // some quill options
         modules: {
@@ -112,6 +114,21 @@ export default {
     }).catch((e) => {
       console.log(e)
     })
+
+    if(this.edit && this.editId > 0){
+      api.note({id: this.editId}).then((resp) => {
+        console.log(JSON.stringify(resp))
+        if (resp.returncode === 1000) {
+          let note = resp.result
+          this.chapter = note.chapter
+          this.page = note.page
+          this.quote = note.content
+          this.comment = note.comment
+        }
+      }).catch((e) => {
+        console.log(e)
+      })
+    }
   },
   head() {
     return {

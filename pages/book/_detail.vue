@@ -26,10 +26,10 @@
       </div>
 
       <!-- 读书笔记  -->
-      <NoteList :bookId="bookId" :notes="quotes" :edit="true"/>
+      <NoteList :bookId="bookId" :notes="quotes" :edit="true" :show-more="true"/>
 
       <!-- 书评列表 -->
-      <CommentList :bookId="bookId" :reviews="reviews"/>
+      <CommentList :bookId="bookId" :reviews="reviews" :can-edit="true" :show-more="true"/>
   </Layout>
 </template>
 
